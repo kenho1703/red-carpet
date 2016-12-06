@@ -1,76 +1,96 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('redCarpet')
-        .controller('BookingController', BookingController);
+  angular
+    .module('myNewProject')
+    .controller('BookingController', BookingController);
 
-    /** @ngInject */
-    function BookingController(AirportService, Account, Airport) {
-        var vm = this;
-        vm.airportLists = Airport.data || [];
-        vm.searchData = {
-            account: Account.data || null,
-            numberOfTravellers: 1,
-            airport: null
-        };
-        vm.listCart = [];
-        vm.bookingForm = '';
-        vm.totalPrice = 0;
-        vm.getPackages = getPackages;
-        vm.minusNumber = minusNumber;
-        vm.plusNumber = plusNumber;
-        vm.bookingPackage = bookingPackage;
-        vm.getPrice = getPrice;
-        function minusNumber() {
-            if (vm.searchData.numberOfTravellers <= 1) return;
-            vm.searchData.numberOfTravellers--;
-        }
+  /** @ngInject */
+  function BookingController(AirportService, AccountService) {
+    var booking = this;
+    booking.airportLists = [];
+    booking.searchData = {
+      account: null,
+      numberOfTravellers: 1,
+      airport: null
+    };
+    booking.listCart = [];
+    booking.bookingForm = '';
+    booking.totalPrice = 0;
+    booking.getPackages = getPackages;
+    booking.minusNumber = minusNumber;
+    booking.plusNumber = plusNumber;
+    booking.bookingPackage = bookingPackage;
+    booking.getPrice = getPrice;
 
-        function plusNumber() {
-            if (vm.searchData.numberOfTravellers >= 20) return;
-            vm.searchData.numberOfTravellers++;
-        }
 
-        function getPackages() {
-            if (!vm.bookingForm.$valid) return;
-            AirportService.getPackages(vm.searchData).then(function (respone) {
-                var newData = respone.data.replace('{"d":null}', '');
-                vm.packageLists = JSON.parse(newData);
-            }, function () {
+    init();
 
-            })
-        }
-
-        function getPrice(Packages) {
-            var Price = 0;
-            angular.forEach(Packages, function (pack) {
-                Price += pack.Price;
-            });
-            return Price;
-        }
-
-        function getPriceTotal(listCart) {
-            var Price = 0;
-            angular.forEach(listCart, function (list) {
-                angular.forEach(list.AirportServices, function (cart) {
-                    Price += cart.Price;
-                });
-            });
-            vm.totalPrice = Price;
-        }
-
-        function bookingPackage(data, flag) {
-            if (flag) {
-                vm.listCart.push(data);
-            } else {
-                angular.forEach(vm.listCart, function (cart, index) {
-                    if (cart.Id === data.Id) {
-                        vm.listCart.splice(index, 1);
-                    }
-                })
-            }
-            getPriceTotal(vm.listCart);
-        }
+    function init() {
+      AirportService.getAirport().then(function (data) {
+        booking.airportLists = data.data;
+        // if (booking.airportLists.length)
+        //   booking.searchData.airport = booking.airportLists[0];
+      }, function () {
+        booking.airportLists = [];
+      });
+      AccountService.getAccount().then(function (data) {
+        booking.searchData.account = data.data;
+      }, function () {
+        booking.searchData.account = null;
+      })
     }
+
+
+    function minusNumber() {
+      if (booking.searchData.numberOfTravellers <= 1) return;
+      booking.searchData.numberOfTravellers--;
+    }
+
+    function plusNumber() {
+      if (booking.searchData.numberOfTravellers >= 20) return;
+      booking.searchData.numberOfTravellers++;
+    }
+
+    function getPackages() {
+      if (!booking.bookingForm.$valid) return;
+      AirportService.getPackages(booking.searchData).then(function (respone) {
+        var newData = respone.data.replace('{"d":null}', '');
+        booking.packageLists = JSON.parse(newData);
+      }, function () {
+
+      })
+    }
+
+    function getPrice(Packages) {
+      var Price = 0;
+      angular.forEach(Packages, function (pack) {
+        Price += pack.Price;
+      });
+      return Price;
+    }
+
+    function getPriceTotal(listCart) {
+      var Price = 0;
+      angular.forEach(listCart, function (list) {
+        angular.forEach(list.AirportServices, function (cart) {
+          Price += cart.Price;
+        });
+      });
+      booking.totalPrice = Price;
+    }
+
+    function bookingPackage(data, flag) {
+      if (flag) {
+        booking.listCart.push(data);
+      } else {
+        angular.forEach(booking.listCart, function (cart, index) {
+          if (cart.Id === data.Id) {
+            booking.listCart.splice(index, 1);
+          }
+        })
+      }
+      getPriceTotal(booking.listCart);
+    }
+  }
 })();
