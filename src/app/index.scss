@@ -1,0 +1,149 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,800,700,600);
+
+@import '../../bower_components/bootstrap/scss/variables';
+@import '../../bower_components/bootstrap/scss/mixins';
+@import '../../bower_components/font-awesome/scss/font-awesome';
+@import '_common/_styles/mixins';
+@import 'variables';
+$navbar-inverse-link-color: #5AADBB;
+//$icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: $color-text;
+  overflow-x: hidden;
+}
+
+.main-wrapper {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#ref {
+  .color-primary {
+    color: $color-primary;
+  }
+
+  .chart {
+    .color-primary {
+      color: $chart-color-primary;
+    }
+    .color-secondary {
+      color: $chart-color-secondary;
+    }
+  }
+}
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  padding-left: $sidebar-width;
+  min-height: 100vh;
+  margin: 0 auto;
+  left: 0;
+  background-color: $color-bg;
+  box-shadow: 0 0 3px #ccc;
+  transition: left 0.3s ease, padding-left 0.3s ease;
+  overflow: hidden;
+
+  .content {
+
+    $padding-x: $content-padding-x-md;
+    $padding-y: $content-padding-y-md;
+
+    padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x;
+    min-height: 100vh;
+
+    @include media(xl) {
+      $padding-x: $content-padding-x-xl;
+      $padding-y: $content-padding-y-xl;
+
+      padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x;
+    }
+
+    @include media(lg) {
+      $padding-x: $content-padding-x-lg;
+      $padding-y: $content-padding-y-lg;
+
+      padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x;
+    }
+
+    @include media(md) {
+      $padding-x: $content-padding-x-md;
+      $padding-y: $content-padding-y-md;
+
+      padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x;
+    }
+
+    @include media-down(sm) {
+      $padding-x: $content-padding-x-sm;
+      $padding-y: $content-padding-y-sm;
+
+      padding: $header-height-xs + $padding-y $padding-x $footer-height + $padding-y $padding-x;
+    }
+  }
+
+
+  @include media-down(md) {
+    padding-left: 0;
+    // background-color: #ccc;
+    // left: -$sidebar-width;
+    // width: calc(100% + #{$sidebar-width});
+  }
+
+  &.sidebar-open {
+    // Disable content scrolling when sidebar is open
+    @include media-down(md) {
+      left: 0;
+      // position: absolute;
+      // height: 100%;
+      // overflow: hidden;
+    }
+  }
+
+  &.blank {
+    background-color: #667380;
+  }
+
+}
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

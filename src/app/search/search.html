@@ -1,0 +1,33 @@
+<div class="search mt-30">
+  <form name="search.bookingForm" novalidate>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" ng-click="search.minusNumber()">
+                  <i class="fa fa-minus" aria-hidden="true"></i>
+              </button>
+          </span>
+          <input type="text" name="number" class="form-control input-number"
+                 ng-model="search.searchData.numberOfTravellers" ng-min="1" ng-max="20">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" ng-click="search.plusNumber()">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+              </button>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select ui-select2 ng-options="airport.Name for airport in search.airportList " class="form-control"
+                ng-model="search.searchData.airport">
+          <option>Please Select</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-default btn-number" ng-click="search.getPackages()">
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
