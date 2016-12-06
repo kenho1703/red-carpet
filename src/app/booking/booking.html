@@ -1,47 +1,119 @@
-<div class="booking mt-30">
-  <form name="booking.bookingForm" novalidate>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="input-group">
-          <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-number" ng-click="booking.minusNumber()">
-                  <i class="fa fa-minus" aria-hidden="true"></i>
-              </button>
-          </span>
-          <input type="text" name="number" class="form-control input-number"
-                 ng-model="booking.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
-          <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-number" ng-click="booking.plusNumber()">
-                  <i class="fa fa-plus" aria-hidden="true"></i>
-              </button>
-          </span>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <select ui-select2 ng-options="airport.Name for airport in booking.airportLists " class="form-control"
-                ng-model="booking.searchData.airport" required>
-          <option>Please Select</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-default btn-number" ng-click="booking.getPackages()">
-          Search
-        </button>
-      </div>
+<div class="booking">
+
+    <div class="banner">
+        <h1 class="banner-title">Airport Queues A Thing Of The Past </h1>
+        <p class="banner-sub-title">No Stress, No Worries, No Waiting</p>
     </div>
-  </form>
-  <div ng-if="booking.packageLists.length">
-    <table ng-if="booking.packageLists.length">
-      <tr ng-repeat="package in booking.packageLists">
-        <td>{{package.Name }}</td>
-        <td>{{package.Description }}<br>
-          <input id="pack-{{$index}}" type="checkbox"
-                 value="false" ng-model="flag"
-                 ng-click="booking.bookingPackage(package,flag)"/>
-        </td>
-      </tr>
-    </table>
-    <a href="">{{booking.totalPrice | currency:"$":0}}</a>
-  </div>
+
+    <div class="container">
+
+        <div class="mt-20">
+            <form name="vm.bookingForm" novalidate>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-label">Number Of Travellers</div>
+                            <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" ng-click="vm.minusNumber()">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                                <input type="text" name="number" class="form-control input-number"
+                                       ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" ng-click="vm.plusNumber()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-label">Number Of Travellers</div>
+                            <ui-select ng-model="vm.searchData.airport" theme="bootstrap">
+                                <ui-select-match placeholder="Please Select ">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="airport in vm.airportLists | filter: $select.search">
+                                    <div ng-bind-html="airport.Name | highlight: $select.search">{{airport.Name}}</div>
+                                </ui-select-choices>
+                            </ui-select>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-label hidden-sm hidden-xs">&nbsp;</div>
+                       <div>
+                           <button type="submit" class="btn btn-lg btn-primary" ng-click="vm.getPackages()">
+                               Search
+                           </button>
+                       </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="search-results mt-20" ng-if="vm.packageLists.length">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <ul ng-if="vm.packageLists.length" class="list-group">
+                        <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3 class="list-group-item-heading">{{package.Name }}</h3>
+                                    <p class="list-group-item-text">{{package.Description }}</p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-6 text-center" >
+                                            <h3 class="item-price">{{vm.getPrice(package) | currency:"$":0 }}</h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button"
+                                                    class="btn pull-right"
+                                                    ng-class="{'btn-success': flag , 'btn-primary': !flag}"
+                                                    ng-model="flag"
+                                                    ng-click="vm.bookingPackage(package,flag)"
+                                                    uib-btn-checkbox btn-checkbox-true="true"
+                                                    btn-checkbox-false="false">
+                                                <span ng-if="flag">Booked</span>
+                                                <span ng-if="!flag">Book</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
+                                <span class="pull-right small" >1items</span>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-lg btn-block">Continue Booking</button>
+                            <hr>
+
+                            <p>We can accept payment via </p>
+                            <img class="img-responsive" src="/assets/images/methods-of-payment.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
 </div>
 

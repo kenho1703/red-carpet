@@ -13,7 +13,8 @@
             'ui.bootstrap',
             'toastr',
 
-            'ui.select2'
+            'ui.select2',
+            'ui.select'
 
         ]);
 

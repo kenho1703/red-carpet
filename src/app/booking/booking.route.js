@@ -11,7 +11,7 @@
                 url: '/',
                 templateUrl: 'app/booking/booking.html',
                 controller: 'BookingController',
-                controllerAs: 'booking'
+                controllerAs: 'vm'
             });
 
     }

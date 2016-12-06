@@ -63,11 +63,11 @@
         }
 
         function getPrice(Packages) {
-            var Price = 0;
-            angular.forEach(Packages, function (pack) {
-                Price += pack.Price;
+            var price = 0;
+            angular.forEach(Packages.AirportServices, function (service) {
+                price += service.Price;
             });
-            return Price;
+            return price;
         }
 
         function getPriceTotal(listCart) {
