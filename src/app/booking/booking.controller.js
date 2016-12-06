@@ -3,10 +3,10 @@
 
     angular
         .module('redCarpet')
-        .controller('BookingController', BookingController);
+        .controller('BookingController', BookingController)
 
     /** @ngInject */
-    function BookingController(AirportService, AccountService) {
+    function BookingController(AirportService, AccountService, $uibModal) {
         var vm = this;
         vm.airportLists = [];
         vm.searchData = {
@@ -20,8 +20,9 @@
         vm.getPackages = getPackages;
         vm.minusNumber = minusNumber;
         vm.plusNumber = plusNumber;
-        vm.bookingPackage = bookingPackage;
+        vm.togglePackageSelection = togglePackageSelection;
         vm.getPrice = getPrice;
+        vm.showCart = showCart;
 
 
         init();
@@ -29,8 +30,6 @@
         function init() {
             AirportService.getAirport().then(function (data) {
                 vm.airportLists = data.data;
-                // if (vm.airportLists.length)
-                //   vm.searchData.airport = vm.airportLists[0];
             }, function () {
                 vm.airportLists = [];
             });
@@ -70,27 +69,36 @@
             return price;
         }
 
-        function getPriceTotal(listCart) {
-            var Price = 0;
-            angular.forEach(listCart, function (list) {
-                angular.forEach(list.AirportServices, function (cart) {
-                    Price += cart.Price;
-                });
+
+        function togglePackageSelection() {
+            vm.totalPrice = vm.packageLists.filter(function (value) {
+                return value.Checked;
+            }).reduce(function (a, b) {
+                var total = getPrice(b.AirportServices);
+                return a + total;
+            }, 0);
+            vm.listCart = vm.packageLists.filter(function (value) {
+                return value.Checked;
             });
-            vm.totalPrice = Price;
         }
 
-        function bookingPackage(data, flag) {
-            if (flag) {
-                vm.listCart.push(data);
-            } else {
-                angular.forEach(vm.listCart, function (cart, index) {
-                    if (cart.Id === data.Id) {
-                        vm.listCart.splice(index, 1);
+        function showCart() {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/booking/carts.html',
+                controller: 'CartsController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    listCart: function () {
+                        return vm.listCart;
                     }
-                })
-            }
-            getPriceTotal(vm.listCart);
+                }
+            });
+            modalInstance.result.then(function (list) {
+
+            }, function () {
+            });
         }
     }
+
 })();
