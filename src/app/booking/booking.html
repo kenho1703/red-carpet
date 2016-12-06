@@ -74,13 +74,13 @@
                                         <div class="col-md-6">
                                             <button type="button"
                                                     class="btn pull-right"
-                                                    ng-class="{'btn-success': flag , 'btn-primary': !flag}"
-                                                    ng-model="flag"
-                                                    ng-click="vm.bookingPackage(package,flag)"
+                                                    ng-class="{'btn-success': package.Checked , 'btn-primary': !package.Checked}"
+                                                    ng-model="package.Checked"
+                                                    ng-checked="vm.togglePackageSelection()"
                                                     uib-btn-checkbox btn-checkbox-true="true"
                                                     btn-checkbox-false="false">
-                                                <span ng-if="flag">Booked</span>
-                                                <span ng-if="!flag">Book</span>
+                                                <span ng-if="package.Checked">Booked</span>
+                                                <span ng-if="!package.Checked">Book</span>
                                             </button>
                                         </div>
                                     </div>
@@ -99,7 +99,9 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <button class="btn btn-primary btn-lg btn-block">Continue Booking</button>
+                            <button
+                                ng-click="vm.viewCart()"
+                                class="btn btn-primary btn-lg btn-block">Continue Booking</button>
                             <hr>
 
                             <p>We can accept payment via </p>

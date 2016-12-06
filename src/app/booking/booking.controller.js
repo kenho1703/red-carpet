@@ -22,7 +22,7 @@
         vm.plusNumber = plusNumber;
         vm.togglePackageSelection = togglePackageSelection;
         vm.getPrice = getPrice;
-        vm.showCart = showCart;
+        vm.viewCart = viewCart;
 
 
         init();
@@ -74,7 +74,7 @@
             vm.totalPrice = vm.packageLists.filter(function (value) {
                 return value.Checked;
             }).reduce(function (a, b) {
-                var total = getPrice(b.AirportServices);
+                var total = getPrice(b);
                 return a + total;
             }, 0);
             vm.listCart = vm.packageLists.filter(function (value) {
@@ -82,7 +82,7 @@
             });
         }
 
-        function showCart() {
+        function viewCart() {
             var modalInstance = $uibModal.open({
                 templateUrl: 'app/booking/carts.html',
                 controller: 'CartsController',
