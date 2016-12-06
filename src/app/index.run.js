@@ -1,12 +1,12 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('myNewProject')
-    .run(runBlock);
+    angular
+        .module('redCarpet')
+        .run(runBlock);
 
-  /** @ngInject */
-  function runBlock($log) {
-  }
+    /** @ngInject */
+    function runBlock() {
+    }
 
 })();

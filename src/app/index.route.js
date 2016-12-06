@@ -1,13 +1,13 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('myNewProject')
-    .config(routerConfig);
+    angular
+        .module('redCarpet')
+        .config(routerConfig);
 
-  /** @ngInject */
-  function routerConfig( $urlRouterProvider) {
-     $urlRouterProvider.otherwise('/');
-  }
+    /** @ngInject */
+    function routerConfig($urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+    }
 
 })();

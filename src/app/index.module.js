@@ -1,7 +1,20 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('myNewProject', [ 'ui.router', 'ui.bootstrap','ui.select2']);
+    angular
+        .module('redCarpet', [
+            'ngAnimate',
+            'ngCookies',
+            'ngTouch',
+            'ngSanitize',
+            'ngMessages',
+            'ngAria',
+            'ui.router',
+            'ui.bootstrap',
+            'toastr',
+
+            'ui.select2'
+
+        ]);
 
 })();

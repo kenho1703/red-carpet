@@ -1,14 +1,14 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('myNewProject')
-    .factory('BookingService', BookingService);
+    angular
+        .module('redCarpet')
+        .factory('BookingService', BookingService);
 
-  /** @ngInject */
-  function BookingService() {
-    var Booking;
-    Booking = {};
-    return Booking;
-  }
+    /** @ngInject */
+    function BookingService() {
+        var Booking;
+        Booking = {};
+        return Booking;
+    }
 })();

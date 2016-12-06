@@ -1,0 +1,154 @@
+.navbar-cls-top {
+    margin-bottom: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $white;
+    border-bottom: none;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    .active1 > a, .open > a {
+        color: $color_suva_cabin_approx;
+        border-bottom: 4px solid;
+        border-color: #fc6347 !important;
+    }
+    .navbar-brand {
+        color: #fc6347;
+        text-align: center;
+        font-weight: 700;
+        padding-top: 20px;
+        &:hover{
+            color: #fc6347;
+        }
+    }
+    .dropdown-menu li a {
+        padding: 5px 0 5px 10px;
+        &:hover {
+            background-color: transparent !important;
+        }
+    }
+    &.active {
+        background: $color_pickled_bluewood_approx;
+        li {
+            &:hover {
+                //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+                transition: all 0.3s ease-in-out 0s;
+            }
+            &:focus {
+                //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+                transition: all 0.3s ease-in-out 0s;
+            }
+            a {
+                /*color: $white !important;*/
+                &:hover {
+                    color: $black;
+                    background: $white;
+                }
+            }
+        }
+        .dropdown-menu li a {
+            color: $black !important;
+            padding: 5px 0 5px 10px;
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+    .navbar-toggle {
+        margin-right: 0;
+        margin-top: 18px;
+        margin-bottom: 18px;
+        border-color: $white;
+        background: none;
+        &:hover {
+            background: none;
+        }
+        &:focus {
+            background: none;
+        }
+        .icon-bar {
+            background-color: $grey;
+        }
+    }
+    .navbar-nav > li {
+        margin-top: 4px;
+        > a {
+            background-color: transparent !important;
+            padding-top: 20px;
+            padding-bottom: 22px;
+        }
+    }
+    a {
+        background-color: transparent !important;
+        &:hover, &:focus {
+            background-color: transparent !important;
+        }
+    }
+    .navbar-collapse {
+        background-color: $white;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #main .navbar-cls-top {
+        li a {
+            font-size: 16px;
+        }
+        .navbar-collapse {
+            padding-right: 38px;
+        }
+    }
+    .navbar-cls-top {
+        .navbar-nav > li {
+            float: left;
+            list-style: none;
+            &:hover {
+                //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+                transition: all 0.3s ease-in-out 0s;
+            }
+            &:focus {
+                //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+                transition: all 0.3s ease-in-out 0s;
+            }
+            > a {
+                color: $color_mountain_mist_approx;
+                border-bottom: 4px solid transparent;
+                &:hover {
+                    color: $color_suva_cabin_approx;
+                    background-color: transparent;
+                    border-bottom: 4px solid #fc6347;
+                }
+            }
+        }
+        .register {
+            span {
+                color: #fc6347;
+                padding: 0 10px;
+                border: solid 1px #ffb4a7;
+                border-radius: 2px;
+                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+            }
+            &:hover {
+                border-bottom: 4px solid transparent;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-cls-top {
+        margin-bottom: 0;
+        .navbar-nav > li > a {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            &:hover, &:focus {
+                background: none;
+            }
+        }
+    }
+}
+

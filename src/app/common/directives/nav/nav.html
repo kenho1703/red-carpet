@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default navbar-cls-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button"
+                    ng-click="isNavCollapsed = !isNavCollapsed"
+                    class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">AirportRedCarpet</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Home</a></li>
+                <li><a href="https://airportredcarpet.com/about/">About</a></li>
+                <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+                    <a href="#" class="dropdown-toggle" uib-dropdown-toggle>Service <span class="caret"></span></a>
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li><a href="#">fast track</a></li>
+                        <li><a href="#">Meet and Assist</a></li>
+                        <li><a href="#">Limo Transfer</a></li>
+                        <li><a href="#">Transit</a></li>
+                        <li><a href="#">Lounge</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://airportredcarpet.com/bookings/">Bookings</a></li>
+                <li><a href="https://airportredcarpet.com/faqs/">FAQ's</a></li>
+                <li><a href="https://airportredcarpet.com/contact-us/">Contact Us</a></li>
+                <li><a href="https://airportredcarpet.com/signin/">Log In/Register</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

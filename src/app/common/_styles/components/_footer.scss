@@ -1,0 +1,120 @@
+.row_dark_bg{
+    margin-top:40px;
+    margin-bottom:40px;
+}
+.hmm{
+    margin-bottom:0px;
+}
+.row_dark_bg p{
+    color:#ffffff;
+    padding-bottom:8px;
+    font-family: Tahoma;
+}
+.row_dark_bg li{
+    list-style:none;
+    padding-bottom: 5px;
+    font-family: Tahoma;
+}
+.row_dark_bg li a{
+    color:#ffffff;
+    text-decoration:underline;
+}
+
+.footer{
+    margin-top: 105px;
+    .text {
+        font-family: AvenirNext;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1.44;
+        text-align: center;
+        color: #ffffff;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    .copy-right {
+        font-size: 12px;
+        font-weight: normal;
+        color: #888888;
+        text-align: center;
+        .support-link {
+            color: #FC6347;
+        }
+        margin-bottom: 20px;
+    }
+    .footer-menu {
+        text-align: center;
+        margin-top: 30px;
+        font-family: AvenirNext;
+        ul {
+            padding-left: 0;
+
+            li {
+                list-style: none;
+                display: inline-block;
+
+                a {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .social [class*="fa fa-"] {
+        background-color: #FFF;
+        border-radius: 10px;
+        color: #888;
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        margin: auto 3px;
+        width: 20px;
+        font-size: 12px;
+        text-align: center;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+    .fa-twitter:hover {
+        background-color: #46c0fb;
+        color: #FFFFFF;
+    }
+
+    .fa-facebook:hover {
+        background-color: #3B5998;
+        color: #FFFFFF;
+    }
+    .fa-google-plus:hover {
+        background-color: #e43834;
+        color: #FFFFFF;
+    }
+}
+
+
+.bg {
+    &.grey {
+        background-color: #f1f3f3;
+    }
+    &.yellow2 {
+        background-color: #ffc15b;
+    }
+    &.green {
+        background-color: #2eca9f;
+    }
+    &.dark-grey {
+        background-color: #383a3f;
+    }
+    &.brand-assets-bg {
+        background: url("img/pattern@2x.png");
+        height: 360px;
+    }
+    &.contact-us-bg {
+        background-color: #f1f3f3;
+        height: 360px;
+    }
+}
