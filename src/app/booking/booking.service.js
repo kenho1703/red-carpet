@@ -6,29 +6,9 @@
     .factory('BookingService', BookingService);
 
   /** @ngInject */
-  function BookingService(CONFIG, $http) {
+  function BookingService() {
     var Booking;
-    Booking = {
-      getPackages: getPackages
-    };
+    Booking = {};
     return Booking;
-    function getPackages(data) {
-      return $http({
-        method: 'POST',
-        url: CONFIG.rest.baseURI + '/GetPackagesByAirportAndAccount',
-        data: data,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        transformResponse: [function (data) {
-          return data;
-        }]
-      }).then(function successCallback(response) {
-        return response;
-      }, function errorCallback(error) {
-        return error;
-      });
-    }
   }
 })();

@@ -30,15 +30,18 @@
       </div>
     </div>
   </form>
-  <table ng-if="booking.packageLists.length">
-    <tr ng-repeat="package in booking.packageLists">
-      <td>{{package.Name }}</td>
-      <td>{{package.Description }}<br>{{booking.getPrice(package.AirportServices)}}
-        <input id="pack-{{$index}}" type="checkbox"
-               value="false" ng-model="flag"
-               ng-click="booking.bookingPackage(package,flag)"/>
-      </td>
-    </tr>
-  </table>
+  <div ng-if="booking.packageLists.length">
+    <table ng-if="booking.packageLists.length">
+      <tr ng-repeat="package in booking.packageLists">
+        <td>{{package.Name }}</td>
+        <td>{{package.Description }}<br>
+          <input id="pack-{{$index}}" type="checkbox"
+                 value="false" ng-model="flag"
+                 ng-click="booking.bookingPackage(package,flag)"/>
+        </td>
+      </tr>
+    </table>
+    <a href="" ui-sref="booking.cart">{{booking.totalPrice | currency:"$":0}}</a>
+  </div>
 </div>
 
