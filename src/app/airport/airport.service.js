@@ -7,12 +7,14 @@
 
     /** @ngInject */
     function AirportService(CONFIG, $http) {
-        var Airport;
-        Airport = {
+
+        var service = {
             getAirport: getAirport,
             getPackages: getPackages
         };
-        return Airport;
+
+        return service;
+
         function getAirport() {
             return $http({
                 method: 'GET',

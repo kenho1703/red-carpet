@@ -3,67 +3,89 @@
 
     angular
         .module('redCarpet')
-        .controller('BookingController', BookingController)
+        .controller('BookingController', BookingController);
 
     /** @ngInject */
     function BookingController(AirportService, AccountService, $uibModal) {
+
         var vm = this;
+
         vm.airportLists = [];
+        vm.listCart = [];
+        vm.totalPrice = 0;
         vm.searchData = {
             account: null,
             numberOfTravellers: 1,
             airport: null
         };
-        vm.listCart = [];
-        vm.bookingForm = '';
-        vm.totalPrice = 0;
+
         vm.getPackages = getPackages;
-        vm.minusNumber = minusNumber;
-        vm.plusNumber = plusNumber;
+        vm.minusNumberOfTravellers = minusNumberOfTravellers;
+        vm.plusNumberOfTravellers = plusNumberOfTravellers;
         vm.togglePackageSelection = togglePackageSelection;
-        vm.getPrice = getPrice;
+        vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
         vm.viewCart = viewCart;
 
+        activate();
 
-        init();
+        function activate() {
 
-        function init() {
+            getAirport();
+            getAccount();
+
+        }
+
+        function getAirport() {
+
             AirportService.getAirport().then(function (data) {
                 vm.airportLists = data.data;
             }, function () {
                 vm.airportLists = [];
             });
+
+        }
+
+        function getAccount() {
             AccountService.getAccount().then(function (data) {
                 vm.searchData.account = data.data;
             }, function () {
                 vm.searchData.account = null;
-            })
-        }
-
-
-        function minusNumber() {
-            if (vm.searchData.numberOfTravellers <= 1) return;
-            vm.searchData.numberOfTravellers--;
-        }
-
-        function plusNumber() {
-            if (vm.searchData.numberOfTravellers >= 20) return;
-            vm.searchData.numberOfTravellers++;
+            });
         }
 
         function getPackages() {
-            if (!vm.bookingForm.$valid) return;
-            AirportService.getPackages(vm.searchData).then(function (respone) {
-                var newData = respone.data.replace('{"d":null}', '');
-                vm.packageLists = JSON.parse(newData);
-            }, function () {
 
+            vm.loading = true;
+            vm.packageLists = [];
+
+            AirportService.getPackages(vm.searchData).then(function (respone) {
+                vm.loading = false;
+                var newData = respone.data.replace('{"d":null}', '');
+                vm.packageLists = angular.fromJson(newData);
+            }, function () {
+                vm.loading = false;
+                vm.packageLists = [];
             })
         }
 
-        function getPrice(Packages) {
+        function minusNumberOfTravellers() {
+
+            if (vm.searchData.numberOfTravellers <= 1) return;
+            vm.searchData.numberOfTravellers--;
+
+        }
+
+        function plusNumberOfTravellers() {
+
+            if (vm.searchData.numberOfTravellers >= 20) return;
+            vm.searchData.numberOfTravellers++;
+
+        }
+
+        function calculatePackageTotalPrice(packages) {
+
             var price = 0;
-            angular.forEach(Packages.AirportServices, function (service) {
+            angular.forEach(packages.AirportServices, function (service) {
                 price += service.Price;
             });
             return price;
@@ -71,15 +93,18 @@
 
 
         function togglePackageSelection() {
-            vm.totalPrice = vm.packageLists.filter(function (value) {
-                return value.Checked;
+
+            vm.totalPrice = vm.packageLists.filter(function (item) {
+                return item.Checked;
             }).reduce(function (a, b) {
-                var total = getPrice(b);
+                var total = calculatePackageTotalPrice(b);
                 return a + total;
             }, 0);
-            vm.listCart = vm.packageLists.filter(function (value) {
-                return value.Checked;
+
+            vm.listCart = vm.packageLists.filter(function (item) {
+                return item.Checked;
             });
+
         }
 
         function viewCart() {

@@ -7,11 +7,13 @@
 
     /** @ngInject */
     function AccountService(CONFIG, $http) {
-        var Account;
-        Account = {
+
+        var service = {
             getAccount: getAccount
         };
-        return Account;
+
+        return service;
+
         function getAccount() {
             return $http({
                 method: 'GET',

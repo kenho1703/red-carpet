@@ -7,8 +7,10 @@
 
     /** @ngInject */
     function BookingService() {
-        var Booking;
-        Booking = {};
-        return Booking;
+
+        var service = {};
+
+        return service;
+
     }
 })();

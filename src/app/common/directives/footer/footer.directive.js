@@ -7,7 +7,7 @@
 
     function redFooter() {
         var directive = {
-            templateUrl: '/app/common/directives/footer/footer.html',
+            templateUrl: 'app/common/directives/footer/footer.html',
             restrict: 'EA'
         };
         return directive;

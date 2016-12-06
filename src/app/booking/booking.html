@@ -15,14 +15,14 @@
                             <div class="form-label">Number Of Travellers</div>
                             <div class="input-group">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" ng-click="vm.minusNumber()">
+                                <button type="button" class="btn btn-default btn-number" ng-click="vm.minusNumberOfTravellers()">
                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                 </button>
                             </span>
                                 <input type="text" name="number" class="form-control input-number"
                                        ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" ng-click="vm.plusNumber()">
+                                <button type="button" class="btn btn-default btn-number" ng-click="vm.plusNumberOfTravellers()">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </span>
@@ -69,7 +69,7 @@
                                 <div class="col-md-3">
                                     <div class="row">
                                         <div class="col-md-6 text-center" >
-                                            <h3 class="item-price">{{vm.getPrice(package) | currency:"$":0 }}</h3>
+                                            <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0 }}</h3>
                                         </div>
                                         <div class="col-md-6">
                                             <button type="button"

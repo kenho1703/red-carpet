@@ -8,7 +8,7 @@
     function redNav() {
 
         var directive = {
-            templateUrl: '/app/common/directives/nav/nav.html',
+            templateUrl: 'app/common/directives/nav/nav.html',
             restrict: 'EA'
         };
         return directive;
