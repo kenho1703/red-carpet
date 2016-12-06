@@ -6,11 +6,11 @@
     .controller('BookingController', BookingController);
 
   /** @ngInject */
-  function BookingController(AirportService, Account, Airport) {
+  function BookingController(AirportService, AccountService) {
     var booking = this;
-    booking.airportLists = Airport.data || [];
+    booking.airportLists = [];
     booking.searchData = {
-      account: Account.data || null,
+      account: null,
       numberOfTravellers: 1,
       airport: null
     };
@@ -22,6 +22,26 @@
     booking.plusNumber = plusNumber;
     booking.bookingPackage = bookingPackage;
     booking.getPrice = getPrice;
+
+
+    init();
+
+    function init() {
+      AirportService.getAirport().then(function (data) {
+        booking.airportLists = data.data;
+        // if (booking.airportLists.length)
+        //   booking.searchData.airport = booking.airportLists[0];
+      }, function () {
+        booking.airportLists = [];
+      });
+      AccountService.getAccount().then(function (data) {
+        booking.searchData.account = data.data;
+      }, function () {
+        booking.searchData.account = null;
+      })
+    }
+
+
     function minusNumber() {
       if (booking.searchData.numberOfTravellers <= 1) return;
       booking.searchData.numberOfTravellers--;
