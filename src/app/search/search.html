@@ -9,7 +9,7 @@
               </button>
           </span>
           <input type="text" name="number" class="form-control input-number"
-                 ng-model="search.searchData.numberOfTravellers" ng-min="1" ng-max="20">
+                 ng-model="search.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
           <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-number" ng-click="search.plusNumber()">
                   <i class="fa fa-plus" aria-hidden="true"></i>
@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="col-md-3">
-        <select ui-select2 ng-options="airport.Name for airport in search.airportList " class="form-control"
-                ng-model="search.searchData.airport">
+        <select ui-select2 ng-options="airport.Name for airport in search.airportLists " class="form-control"
+                ng-model="search.searchData.airport" required>
           <option>Please Select</option>
         </select>
       </div>
@@ -30,4 +30,15 @@
       </div>
     </div>
   </form>
+  <table ng-if="search.packageLists.length">
+    <tr ng-repeat="package in search.packageLists">
+      <td>{{package.Name }}</td>
+      <td>{{package.Description }}<br>
+        <input id="pack-{{$index}}" type="checkbox"
+               value="false" ng-model="flag"
+               ng-click="search.bookingPackage(package,flag)"/>
+      </td>
+    </tr>
+  </table>
 </div>
+

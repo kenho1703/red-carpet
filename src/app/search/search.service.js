@@ -12,7 +12,7 @@
       getAccount: getAccount,
       getAirport: getAirport,
       getPackages: getPackages
-    }
+    };
     return Search;
     function getAccount() {
       return $http({
@@ -21,7 +21,7 @@
       }).then(function successCallback(response) {
         return response;
       }, function errorCallback(error) {
-        console.log('error', error)
+        return error;
       });
     }
 
@@ -32,7 +32,7 @@
       }).then(function successCallback(response) {
         return response;
       }, function errorCallback(error) {
-        console.log('error', error)
+        return error;
       });
     }
 
@@ -40,11 +40,19 @@
       return $http({
         method: 'POST',
         url: CONFIG.rest.baseURI + '/GetPackagesByAirportAndAccount',
-        data: data
+        data: data,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept' : 'application/json'
+        },
+        transformResponse: [function (data) {
+          return data;
+        }]
       }).then(function successCallback(response) {
-        console.log('response', response)
+        return response;
       }, function errorCallback(error) {
-        console.log('error', error)
+        console.log(error);
+        return error;
       });
     }
   }
