@@ -1,47 +1,47 @@
 <div class="booking mt-30">
-  <form name="booking.bookingForm" novalidate>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="input-group">
+    <form name="booking.bookingForm" novalidate>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group">
           <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-number" ng-click="booking.minusNumber()">
                   <i class="fa fa-minus" aria-hidden="true"></i>
               </button>
           </span>
-          <input type="text" name="number" class="form-control input-number"
-                 ng-model="booking.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
-          <span class="input-group-btn">
+                    <input type="text" name="number" class="form-control input-number"
+                           ng-model="booking.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
+                    <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-number" ng-click="booking.plusNumber()">
                   <i class="fa fa-plus" aria-hidden="true"></i>
               </button>
           </span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select ui-select2 ng-options="airport.Name for airport in booking.airportLists " class="form-control"
+                        ng-model="booking.searchData.airport" required>
+                    <option>Please Select</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-default btn-number" ng-click="booking.getPackages()">
+                    Search
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <select ui-select2 ng-options="airport.Name for airport in booking.airportLists " class="form-control"
-                ng-model="booking.searchData.airport" required>
-          <option>Please Select</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-default btn-number" ng-click="booking.getPackages()">
-          Search
-        </button>
-      </div>
+    </form>
+    <div ng-if="booking.packageLists.length">
+        <table>
+            <tr ng-repeat="package in booking.packageLists">
+                <td>{{package.Name }}</td>
+                <td>{{package.Description }}<br>
+                    <input id="pack-{{$index}}" type="checkbox"
+                           value="false" ng-model="package.Checked"
+                           ng-checked="booking.togglePackageSelection()"/>
+                </td>
+            </tr>
+        </table>
+        <a href="" ng-click="booking.showCart()">{{booking.totalPrice | currency:"$":0}}</a>
     </div>
-  </form>
-  <div ng-if="booking.packageLists.length">
-    <table ng-if="booking.packageLists.length">
-      <tr ng-repeat="package in booking.packageLists">
-        <td>{{package.Name }}</td>
-        <td>{{package.Description }}<br>
-          <input id="pack-{{$index}}" type="checkbox"
-                 value="false" ng-model="flag"
-                 ng-click="booking.bookingPackage(package,flag)"/>
-        </td>
-      </tr>
-    </table>
-    <a href="">{{booking.totalPrice | currency:"$":0}}</a>
-  </div>
 </div>
 

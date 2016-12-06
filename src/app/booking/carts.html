@@ -1,0 +1,13 @@
+<div>
+    <table>
+        <tr ng-repeat="cart in vm.listCartView">
+            <td>{{cart.Name }}</td>
+            <td>{{cart.Description }}<br>
+                <a href="#" ng-click="vm.removeItemCart($index)">Remove</a>
+            </td>
+        </tr>
+    </table>
+    <button ng-click="vm.ok()">Ok</button>
+    <button ng-click="vm.cancel()">Cancel</button>
+</div>
+
