@@ -1,0 +1,24 @@
+<div class="checkout">
+
+    <div class="banner">
+        <h1 class="banner-title">Airport Queues A Thing Of The Past </h1>
+        <p class="banner-sub-title">No Stress, No Worries, No Waiting</p>
+    </div>
+
+    <div class="container">
+        <ul ng-if="vm.packageLists.length" class="list-group">
+            <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h3 class="list-group-item-heading">{{package.Name }}</h3>
+                        <p class="list-group-item-text">{{package.Description }}</p>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+
