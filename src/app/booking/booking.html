@@ -18,8 +18,8 @@
                                     <div class="input-group">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number"
-                                        ng-click="vm.minusNumberOfTravellers()">
-                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                        ng-click="vm.minusNumberOfTravellers()"> &nbsp;
+                                    <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
                                 </button>
                             </span>
                                         <input type="text" name="number" class="form-control input-number"
@@ -27,8 +27,8 @@
                                                required>
                                         <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number"
-                                        ng-click="vm.plusNumberOfTravellers()">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                        ng-click="vm.plusNumberOfTravellers()"> &nbsp;
+                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;
                                 </button>
                             </span>
                                     </div>
@@ -52,7 +52,13 @@
                                 <div class="text-center">
                                     <button type="submit"
                                             ng-disabled="!vm.searchData.airport"
-                                            class="btn btn-lg btn-primary" ng-click="vm.getPackages()">
+                                            class="btn btn-lg btn-primary hidden-xs" ng-click="vm.getPackages()">
+                                        <span ng-hide="vm.loading">Search</span>
+                                        <span ng-show="vm.loading">Searching</span>
+                                    </button>
+                                    <button type="submit"
+                                            ng-disabled="!vm.searchData.airport"
+                                            class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.getPackages()">
                                         <span ng-hide="vm.loading">Search</span>
                                         <span ng-show="vm.loading">Searching</span>
                                     </button>
@@ -76,24 +82,24 @@
                     <ul ng-if="vm.packageLists.length" class="list-group">
                         <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-9 col-sm-10 col-xs-8">
                                     <h3 class="list-group-item-heading">{{package.Name }}</h3>
                                     <p class="list-group-item-text">{{package.Description }}</p>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-sm-2 col-xs-4">
                                     <div class="text-center">
                                         <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0
                                             }}</h3>
                                         <button type="button"
-                                                class="btn"
+                                                class="btn btn-book"
                                                 ng-class="{'btn-success': package.checked , 'btn-primary': !package.checked}"
                                                 ng-model="package.checked"
                                                 ng-click="vm.togglePackageSelection(package)"
                                                 uib-btn-checkbox btn-checkbox-true="true"
                                                 btn-checkbox-false="false">
-                                            <span ng-if="package.checked">Booked</span>
-                                            <span ng-if="!package.checked">Book</span>
+                                            <span ng-show="package.checked">Booked</span>
+                                            <span ng-show="!package.checked">Book</span>
                                         </button>
                                     </div>
                                 </div>
@@ -105,7 +111,7 @@
 
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 hidden-xs hidden-sm">
 
                 <div class="panel">
                     <div class="panel-heading">
@@ -125,9 +131,23 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
 
+    </div>
 
+    <div class="checkout-wrapper visible-xs" ng-show="vm.totalPrice">
+       <div class="container">
+           <div class="row">
+               <div class="col-xs-12">
+                   <a ui-sref="checkout" type="button"
+                      class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.getPackages()">
+                       <span>Checkout</span>
+                   </a>
+               </div>
+           </div>
+       </div>
     </div>
 
 </div>

@@ -19,13 +19,32 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <h3 class="list-group-item-heading">{{package.Name }}</h3>
-                                    <p class="list-group-item-text">{{package.Description }}</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Service Type</th>
+                                                <th>Airport</th>
+                                                <th>Service</th>
+                                                <th>Price</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="service in package.AirportServices">
+                                                <td>{{service.ServiceType.Name}}</td>
+                                                <td>{{service.Airport.Name}}</td>
+                                                <td>{{service.Service.Name}}</td>
+                                                <td>{{service.Price}}</td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="text-center">
-                                        <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0
-                                            }}</h3>
                                         <button type="button"
                                                 class="btn"
                                                 ng-class="{'btn-success': package.checked , 'btn-primary': !package.checked}"
@@ -46,31 +65,47 @@
 
             </div>
             <div class="col-md-4">
-
-                <div class="panel">
+                <div class="panel hidden-xs">
                     <div class="panel-heading">
-                        <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
+                        <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":0}}
                             <span class="pull-right small">{{vm.totalItemInCart}} items</span>
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <button ng-disabled="!vm.totalPrice"
-                           class="btn btn-primary btn-lg btn-block">Confirm Check out
-                        </button>
+                        <a ui-sref="booking" class="btn btn-primary btn-lg btn-block">Continue Booking </a>
 
-                        <a ui-sref="booking"
-                           class="mt-30 btn btn-primary btn-lg btn-block">Back to booking
-                        </a>
+                        <button ng-disabled="!vm.totalPrice"
+                                class="mt-30  btn btn-primary btn-lg btn-block">Confirm Check Out
+                        </button>
                         <hr>
 
                         <p>We can accept payment via </p>
                         <img class="img-responsive" src="/assets/images/methods-of-payment.png">
                     </div>
                 </div>
+                <div class="mt-20 visible-xs">
+                    <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":0}}
+                        <span class="pull-right small">{{vm.totalItemInCart}} items</span>
+                    </h3>
+                </div>
+
             </div>
         </div>
 
 
+    </div>
+
+    <div class="checkout-wrapper visible-xs">
+        <div class="container">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <a ui-sref="booking" type="button" class="btn btn-lg btn-primary">Continue Booking</a>
+                </div>
+                <div ng-show="vm.totalPrice" class="btn-group" role="group">
+                    <button type="button" class="btn btn-lg btn-primary">Check Out</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

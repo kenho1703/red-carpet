@@ -11,10 +11,12 @@
     -webkit-border-radius:0;
     -moz-border-radius:0;
     border-radius:0;
-    .active1 > a, .open > a {
-        color: $color_suva_cabin_approx;
+    .active > a, .open > a {
+        color: #b00d07;
         border-bottom: 4px solid;
         border-color: #b00d07 !important;
+        font-weight: 200;
+        font-size: 17px;
     }
     .navbar-brand {
         color: #b00d07;
@@ -45,13 +47,13 @@
             a {
                 /*color: $white !important;*/
                 &:hover {
-                    color: $black;
+                    color: #b00d07;;
                     background: $white;
                 }
             }
         }
         .dropdown-menu li a {
-            color: $black !important;
+            color: #b00d07 !important;
             padding: 5px 0 5px 10px;
             &:hover {
                 color: $white;
@@ -60,8 +62,8 @@
     }
     .navbar-toggle {
         margin-right: 0;
-        margin-top: 18px;
-        margin-bottom: 18px;
+        margin-top: 15px;
+        margin-bottom: 15px;
         border-color: $white;
         background: none;
         &:hover {
@@ -91,6 +93,20 @@
     .navbar-collapse {
         background-color: $white;
     }
+
+    .cart{
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-right: 10px;
+        color: #b00d07;
+        position: relative;
+        .badge{
+            position: absolute;
+            top: 3px;
+            right: 0px;
+            padding: 3px 6px;
+        }
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -115,10 +131,11 @@
                 transition: all 0.3s ease-in-out 0s;
             }
             > a {
-                color: $color_mountain_mist_approx;
+                color: #b00d07;
                 border-bottom: 4px solid transparent;
+                font-size: 17px;
                 &:hover {
-                    color: $color_suva_cabin_approx;
+                    color: #b00d07;
                     background-color: transparent;
                     border-bottom: 4px solid #b00d07;
                 }

@@ -19,17 +19,6 @@
         vm.totalItemInCart = CartService.items.length;
 
         vm.removePackage = removePackage;
-        vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
-
-        function calculatePackageTotalPrice(packages) {
-
-            var price = 0;
-            angular.forEach(packages.AirportServices, function (service) {
-                price += service.Price;
-            });
-            return price;
-        }
-
         function removePackage(item) {
             CartService.remove(item);
             vm.packages = CartService.items;
