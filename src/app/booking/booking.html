@@ -16,12 +16,12 @@
                                 <div class="form-group">
                                     <div class="form-label">Number Of Travellers</div>
                                     <div class="input-group">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number"
-                                        ng-click="vm.minusNumberOfTravellers()"> &nbsp;
-                                    <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
-                                </button>
-                            </span>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number"
+                                                    ng-click="vm.minusNumberOfTravellers()"> &nbsp;
+                                                <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
+                                            </button>
+                                        </span>
                                         <input type="text" name="number" class="form-control input-number"
                                                ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20"
                                                required>
@@ -111,7 +111,7 @@
 
 
             </div>
-            <div class="col-md-4 hidden-xs hidden-sm">
+            <div class="col-md-4 hidden-xs">
 
                 <div class="panel">
                     <div class="panel-heading">
@@ -137,10 +137,13 @@
 
     </div>
 
-    <div class="checkout-wrapper visible-xs" ng-show="vm.totalPrice">
+    <div class="fix-bottom-wrapper visible-xs" ng-show="vm.totalPrice">
        <div class="container">
            <div class="row">
-               <div class="col-xs-12">
+               <div class="col-xs-12 checkout-wrapper">
+                   <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
+                       <span class="pull-right small">{{vm.totalItemInCart}} items</span>
+                   </h3>
                    <a ui-sref="checkout" type="button"
                       class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.getPackages()">
                        <span>Checkout</span>
