@@ -7,57 +7,71 @@
 
     <div class="container">
 
-        <div class="mt-20">
-            <form name="vm.bookingForm" novalidate>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="form-label">Number Of Travellers</div>
-                            <div class="input-group">
+        <div class="row mt-20">
+            <div class="col-md-8">
+                <div>
+                    <form name="vm.bookingForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="form-label">Number Of Travellers</div>
+                                    <div class="input-group">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" ng-click="vm.minusNumberOfTravellers()">
+                                <button type="button" class="btn btn-default btn-number"
+                                        ng-click="vm.minusNumberOfTravellers()">
                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                 </button>
                             </span>
-                                <input type="text" name="number" class="form-control input-number"
-                                       ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20" required>
-                                <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" ng-click="vm.plusNumberOfTravellers()">
+                                        <input type="text" name="number" class="form-control input-number"
+                                               ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20"
+                                               required>
+                                        <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number"
+                                        ng-click="vm.plusNumberOfTravellers()">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="form-label">Airport</div>
+
+                                    <select chosen options="vm.airportLists"
+                                            class="form-control"
+                                            ng-model="vm.searchData.airport"
+                                            placeholder="Please Select"
+                                            ng-options="airport as airport.Name for airport in vm.airportLists">
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-label hidden-sm hidden-xs">&nbsp;</div>
+                                <div class="text-center">
+                                    <button type="submit"
+                                            ng-disabled="!vm.searchData.airport"
+                                            class="btn btn-lg btn-primary" ng-click="vm.getPackages()">
+                                        Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="form-label">Number Of Travellers</div>
-                            <ui-select ng-model="vm.searchData.airport" theme="bootstrap">
-                                <ui-select-match placeholder="Please Select ">{{$select.selected.Name}}</ui-select-match>
-                                <ui-select-choices repeat="airport in vm.airportLists | filter: $select.search">
-                                    <div ng-bind-html="airport.Name | highlight: $select.search">{{airport.Name}}</div>
-                                </ui-select-choices>
-                            </ui-select>
-
-
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-label hidden-sm hidden-xs">&nbsp;</div>
-                       <div>
-                           <button type="submit" class="btn btn-lg btn-primary" ng-click="vm.getPackages()">
-                               Search
-                           </button>
-                       </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
-        </div>
 
-        <div class="search-results mt-20" ng-if="vm.packageLists.length">
+                <div>
+                    <p class="mt-50" ng-if="vm.packageLists.length <= 0 && !vm.loading">
+                        Please contact AirportRedCarpet.com directly for a quote
+                    </p>
 
-            <div class="row">
-                <div class="col-md-8">
+                    <div class="loading-block mt-40 text-center" ng-if="vm.loading">
+                        <span><img src="assets/images/loading.GIF" alt=""></span>
+                        <span> &nbsp; &nbsp; Loading...</span>
+                    </div>
+
+
                     <ul ng-if="vm.packageLists.length" class="list-group">
                         <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
                             <div class="row">
@@ -67,22 +81,19 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <div class="row">
-                                        <div class="col-md-6 text-center" >
-                                            <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0 }}</h3>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button type="button"
-                                                    class="btn pull-right"
-                                                    ng-class="{'btn-success': package.Checked , 'btn-primary': !package.Checked}"
-                                                    ng-model="package.Checked"
-                                                    ng-checked="vm.togglePackageSelection()"
-                                                    uib-btn-checkbox btn-checkbox-true="true"
-                                                    btn-checkbox-false="false">
-                                                <span ng-if="package.Checked">Booked</span>
-                                                <span ng-if="!package.Checked">Book</span>
-                                            </button>
-                                        </div>
+                                    <div class="text-center">
+                                        <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0
+                                            }}</h3>
+                                        <button type="button"
+                                                class="btn"
+                                                ng-class="{'btn-success': package.checked , 'btn-primary': !package.checked}"
+                                                ng-model="package.checked"
+                                                ng-click="vm.togglePackageSelection(package)"
+                                                uib-btn-checkbox btn-checkbox-true="true"
+                                                btn-checkbox-false="false">
+                                            <span ng-if="package.checked">Booked</span>
+                                            <span ng-if="!package.checked">Book</span>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -90,31 +101,32 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-4">
 
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
-                                <span class="pull-right small" >1items</span>
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <button
-                                ng-click="vm.viewCart()"
-                                class="btn btn-primary btn-lg btn-block">Continue Booking</button>
-                            <hr>
 
-                            <p>We can accept payment via </p>
-                            <img class="img-responsive" src="/assets/images/methods-of-payment.png">
-                        </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
+                            <span class="pull-right small">{{vm.selectedItems.length}} items</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <a ui-sref="checkout"
+                            ng-disabled="!vm.totalPrice"
+                            class="btn btn-primary btn-lg btn-block">Check out
+                        </a>
+                        <hr>
+
+                        <p>We can accept payment via </p>
+                        <img class="img-responsive" src="/assets/images/methods-of-payment.png">
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
+
+
     </div>
 
 </div>

@@ -39,38 +39,29 @@
             outline: none;
         }
     }
-
+    .chosen-container-single .chosen-single{
+        height: 48px;
+        line-height: 48px;
+        border-radius: 4px;
+    }
+    .chosen-container-single .chosen-single div b {
+        background-position: 0px 14px;;
+    }
+    .chosen-container-active.chosen-with-drop .chosen-single div b {
+        background-position: -16px 14px;
+    }
     .btn-primary {
-        border-color: #ff5a5f;
-        background-color: #ff5a5f;
+        border-color: #b00d07;
+        background-color: #b00d07;
         color: #fff;
         border-radius: 4px;
         padding-left: 20px;
         padding-right: 20px;
     }
     .btn-primary:hover, .btn-primary:focus {
-        border-color: #ff7e82;
-        background-color: #ff7e82;
+        border-color: #B00D07;
+        background-color: #B00D07;
         color: #fff;
-    }
-
-    .ui-select-match-text,
-    .ui-select-placeholder{
-        line-height: 36px;
-    }
-    .select2 > .select2-choice.ui-select-match {
-        /* Because of the inclusion of Bootstrap */
-        height: 29px;
-    }
-
-    .selectize-control > .selectize-dropdown {
-        top: 36px;
-    }
-    /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
-    .select-box {
-        background: #fff;
-        position: relative;
-        z-index: 1;
     }
     .panel{
         border: 0;

@@ -14,7 +14,8 @@
             'toastr',
 
             'ui.select2',
-            'ui.select'
+            'ui.select',
+            'angular.chosen'
 
         ]);
 

@@ -14,15 +14,15 @@
     .active1 > a, .open > a {
         color: $color_suva_cabin_approx;
         border-bottom: 4px solid;
-        border-color: #fc6347 !important;
+        border-color: #b00d07 !important;
     }
     .navbar-brand {
-        color: #fc6347;
+        color: #b00d07;
         text-align: center;
         font-weight: 700;
         padding-top: 20px;
         &:hover{
-            color: #fc6347;
+            color: #b00d07;
         }
     }
     .dropdown-menu li a {
@@ -120,13 +120,13 @@
                 &:hover {
                     color: $color_suva_cabin_approx;
                     background-color: transparent;
-                    border-bottom: 4px solid #fc6347;
+                    border-bottom: 4px solid #b00d07;
                 }
             }
         }
         .register {
             span {
-                color: #fc6347;
+                color: #b00d07;
                 padding: 0 10px;
                 border: solid 1px #ffb4a7;
                 border-radius: 2px;

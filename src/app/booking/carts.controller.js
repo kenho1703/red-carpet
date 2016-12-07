@@ -13,7 +13,7 @@
         vm.ok = ok;
         vm.cancel = cancel;
         function removeItemCart(index) {
-            delete vm.listCartView[index].Checked;
+            delete vm.listCartView[index].checked;
             vm.listCartView.splice(index, 1);
         }
 

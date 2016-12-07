@@ -6,12 +6,12 @@
         .controller('BookingController', BookingController);
 
     /** @ngInject */
-    function BookingController(AirportService, AccountService, $uibModal) {
+    function BookingController($filter, AirportService, AccountService, $uibModal, CartService) {
 
         var vm = this;
 
         vm.airportLists = [];
-        vm.listCart = [];
+        vm.selectedItems = [];
         vm.totalPrice = 0;
         vm.searchData = {
             account: null,
@@ -24,7 +24,6 @@
         vm.plusNumberOfTravellers = plusNumberOfTravellers;
         vm.togglePackageSelection = togglePackageSelection;
         vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
-        vm.viewCart = viewCart;
 
         activate();
 
@@ -37,8 +36,9 @@
 
         function getAirport() {
 
-            AirportService.getAirport().then(function (data) {
-                vm.airportLists = data.data;
+            AirportService.getAirport().then(function (res) {
+                vm.airportLists = res.data;
+                vm.airportLists = $filter('orderBy')(res.data, 'Name');
             }, function () {
                 vm.airportLists = [];
             });
@@ -46,8 +46,8 @@
         }
 
         function getAccount() {
-            AccountService.getAccount().then(function (data) {
-                vm.searchData.account = data.data;
+            AccountService.getAccount().then(function (res) {
+                vm.searchData.account = res.data;
             }, function () {
                 vm.searchData.account = null;
             });
@@ -57,11 +57,11 @@
 
             vm.loading = true;
             vm.packageLists = [];
-
             AirportService.getPackages(vm.searchData).then(function (respone) {
                 vm.loading = false;
                 var newData = respone.data.replace('{"d":null}', '');
                 vm.packageLists = angular.fromJson(newData);
+                checkPackageSelected();
             }, function () {
                 vm.loading = false;
                 vm.packageLists = [];
@@ -91,38 +91,29 @@
             return price;
         }
 
+        function calculateTotalPrice() {
+
+            var totalPrice = 0;
+            angular.forEach(vm.selectedItems, function (item) {
+                totalPrice += calculatePackageTotalPrice(item);
+            });
+            return totalPrice;
+        }
+
+        function checkPackageSelected() {
+            var test = _.intersectionBy(vm.packageLists, vm.selectedItems, 'Id');
+        }
 
         function togglePackageSelection() {
 
-            vm.totalPrice = vm.packageLists.filter(function (item) {
-                return item.Checked;
-            }).reduce(function (a, b) {
-                var total = calculatePackageTotalPrice(b);
-                return a + total;
-            }, 0);
-
-            vm.listCart = vm.packageLists.filter(function (item) {
-                return item.Checked;
+            vm.selectedItems = vm.packageLists.filter(function (item) {
+                return item.checked;
             });
+            // CartService.addPackage(item);
+            CartService.items = vm.selectedItems;
 
-        }
+            vm.totalPrice =  calculateTotalPrice();
 
-        function viewCart() {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'app/booking/carts.html',
-                controller: 'CartsController',
-                controllerAs: 'vm',
-                size: 'lg',
-                resolve: {
-                    listCart: function () {
-                        return vm.listCart;
-                    }
-                }
-            });
-            modalInstance.result.then(function (list) {
-
-            }, function () {
-            });
         }
     }
 
