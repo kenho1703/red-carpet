@@ -1,112 +1,108 @@
-.booking{
-    .banner {
-        background-image: url("/assets/images/banner-2.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50%;
-        height: 250px;
+.banner {
+    background-image: url("/assets/images/banner-2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    height: 250px;
+    text-align: center;
+    .banner-title {
+        font-size: 36px;
+        font-weight: 700;
         text-align: center;
-        .banner-title {
-            font-size: 36px;
-            font-weight: 700;
-            text-align: center;
-            color: #fff;
-            letter-spacing: 1px;
-            padding-top: 70px;
-            margin-top: 0;
-        }
-        .banner-sub-title {
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 1.44;
-            text-align: center;
-            color: #fff;
-            padding-top: 10px;
-        }
-    }
-    .form-control{
-        height: 48px;
-    }
-    .input-group-btn > .btn {
-        padding-top: 13px;
-        padding-bottom: 13px;
-    }
-    .btn{
-        outline: none;
-        &:focus,
-        &:active,
-        &:hover{
-            outline: none;
-        }
-    }
-    .chosen-container-single .chosen-single{
-        height: 48px;
-        line-height: 48px;
-        border-radius: 4px;
-    }
-    .chosen-container-single .chosen-single div b {
-        background-position: 0px 14px;;
-    }
-    .chosen-container-active.chosen-with-drop .chosen-single div b {
-        background-position: -16px 14px;
-    }
-    .btn-primary {
-        border-color: #b00d07;
-        background-color: #b00d07;
         color: #fff;
-        border-radius: 4px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .btn-primary:hover, .btn-primary:focus {
-        border-color: #B00D07;
-        background-color: #B00D07;
-        color: #fff;
-    }
-    .panel{
-        border: 0;
-        border-radius: 0;
-        .panel-heading{
-            background-color: #3c3f40;
-            padding-left: 25px;
-            padding-right: 25px;
-            color: #fff;
-            border-color: #3c3f40;
-            h3{
-                margin-top: 10px;
-            }
-            .small{
-                font-size: 16px;
-                color: #fff;
-                line-height: 26px;
-            }
-        }
-        .panel-body {
-            padding: 15px;
-            padding-left: 25px;
-            padding-right: 25px;
-            border: 1px solid #ddd;
-            border-top: 0;
-        }
-    }
-
-    .list-group-item {
-        padding: 25px 0 10px 0;
-        border-left: 0;
-        border-right: 0;
-        &:first-child {
-            border: 0;
-        }
-        &:last-child {
-             border-bottom-right-radius: 0;
-             border-bottom-left-radius: 0;
-         }
-        .btn{
-            transition: all 0.3s;
-        }
-    }
-
-    .item-price{
+        letter-spacing: 1px;
+        padding-top: 70px;
         margin-top: 0;
     }
+    .banner-sub-title {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.44;
+        text-align: center;
+        color: #fff;
+        padding-top: 10px;
+    }
+}
+.form-control{
+    height: 48px;
+}
+.input-group-btn > .btn {
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+.btn{
+    outline: none;
+    &:focus,
+    &:active,
+    &:hover{
+        outline: none;
+    }
+}
+.chosen-container-single .chosen-single{
+    height: 48px;
+    line-height: 48px;
+    border-radius: 4px;
+}
+.chosen-container-single .chosen-single div b {
+    background-position: 0px 14px;;
+}
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position: -16px 14px;
+}
+.btn-primary {
+    border-color: #b00d07;
+    background-color: #b00d07;
+    color: #fff;
+    border-radius: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.btn-primary:hover, .btn-primary:focus {
+    border-color: #B00D07;
+    background-color: #B00D07;
+    color: #fff;
+}
+.panel{
+    border: 0;
+    border-radius: 0;
+    .panel-heading{
+        background-color: #3c3f40;
+        padding-left: 25px;
+        padding-right: 25px;
+        color: #fff;
+        border-color: #3c3f40;
+        h3{
+            margin-top: 10px;
+        }
+        .small{
+            font-size: 16px;
+            color: #fff;
+            line-height: 26px;
+        }
+    }
+    .panel-body {
+        padding: 15px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border: 1px solid #ddd;
+        border-top: 0;
+    }
+}
+.list-group-item {
+    padding: 25px 0 10px 0;
+    border-left: 0;
+    border-right: 0;
+    &:first-child {
+        border: 0;
+    }
+    &:last-child {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .btn{
+        transition: all 0.3s;
+    }
+}
+.item-price{
+    margin-top: 0;
 }

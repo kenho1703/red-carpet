@@ -6,17 +6,70 @@
     </div>
 
     <div class="container">
-        <ul ng-if="vm.packageLists.length" class="list-group">
-            <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
-                <div class="row">
-                    <div class="col-md-9">
-                        <h3 class="list-group-item-heading">{{package.Name }}</h3>
-                        <p class="list-group-item-text">{{package.Description }}</p>
-                    </div>
 
+        <div class="row mt-20">
+            <div class="col-md-8">
+                <div>
+                    <p class="mt-50" ng-if="vm.packages.length <= 0 && !vm.loading">
+                        No item in cart.
+                    </p>
+
+                    <ul ng-if="vm.packages.length" class="list-group">
+                        <li href="#" class="list-group-item" ng-repeat="package in vm.packages">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3 class="list-group-item-heading">{{package.Name }}</h3>
+                                    <p class="list-group-item-text">{{package.Description }}</p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="text-center">
+                                        <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0
+                                            }}</h3>
+                                        <button type="button"
+                                                class="btn"
+                                                ng-class="{'btn-success': package.checked , 'btn-primary': !package.checked}"
+                                                ng-model="package.checked"
+                                                ng-click="vm.removePackage(package)"
+                                                uib-btn-checkbox btn-checkbox-true="true"
+                                                btn-checkbox-false="false">
+                                            <span ng-if="package.checked">Remove</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-        </ul>
+
+
+            </div>
+            <div class="col-md-4">
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
+                            <span class="pull-right small">{{vm.totalItemInCart}} items</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <button ng-disabled="!vm.totalPrice"
+                           class="btn btn-primary btn-lg btn-block">Confirm Check out
+                        </button>
+
+                        <a ui-sref="booking"
+                           class="mt-30 btn btn-primary btn-lg btn-block">Back to booking
+                        </a>
+                        <hr>
+
+                        <p>We can accept payment via </p>
+                        <img class="img-responsive" src="/assets/images/methods-of-payment.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 

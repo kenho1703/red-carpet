@@ -6,18 +6,18 @@
         .controller('BookingController', BookingController);
 
     /** @ngInject */
-    function BookingController($filter, AirportService, AccountService, $uibModal, CartService) {
+    function BookingController($filter, AirportService, AccountService, CartService) {
 
         var vm = this;
 
         vm.airportLists = [];
-        vm.selectedItems = [];
-        vm.totalPrice = 0;
         vm.searchData = {
             account: null,
             numberOfTravellers: 1,
             airport: null
         };
+        vm.totalPrice =  CartService.getTotalPrice() || 0;
+        vm.totalItemInCart =  CartService.items.length || 0;
 
         vm.getPackages = getPackages;
         vm.minusNumberOfTravellers = minusNumberOfTravellers;
@@ -61,7 +61,7 @@
                 vm.loading = false;
                 var newData = respone.data.replace('{"d":null}', '');
                 vm.packageLists = angular.fromJson(newData);
-                checkPackageSelected();
+                checkPackageExistsInCart();
             }, function () {
                 vm.loading = false;
                 vm.packageLists = [];
@@ -91,28 +91,23 @@
             return price;
         }
 
-        function calculateTotalPrice() {
-
-            var totalPrice = 0;
-            angular.forEach(vm.selectedItems, function (item) {
-                totalPrice += calculatePackageTotalPrice(item);
-            });
-            return totalPrice;
+        function checkPackageExistsInCart() {
+            var intersectItems = _.intersectionBy(vm.packageLists, CartService.items, 'Id');
+            intersectItems.forEach(function (item) {
+                item.checked = true;
+            })
         }
 
-        function checkPackageSelected() {
-            var test = _.intersectionBy(vm.packageLists, vm.selectedItems, 'Id');
-        }
+        function togglePackageSelection(item) {
 
-        function togglePackageSelection() {
+            if(item.checked){
+                CartService.add(item);
+            }else{
+                CartService.remove(item);
+            }
 
-            vm.selectedItems = vm.packageLists.filter(function (item) {
-                return item.checked;
-            });
-            // CartService.addPackage(item);
-            CartService.items = vm.selectedItems;
-
-            vm.totalPrice =  calculateTotalPrice();
+            vm.totalPrice =  CartService.getTotalPrice();
+            vm.totalItemInCart =  CartService.items.length;
 
         }
     }

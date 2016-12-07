@@ -10,11 +10,38 @@
 
         var service = {
             items : [],
-            addPackage: addPackage
+            add: add,
+            remove: remove,
+            getTotalPrice: getTotalPrice
         };
-        
-        function addPackage() {
-            
+
+        function add(item) {
+            service.items.push(item)
+        }
+
+        function remove(item) {
+            item.checked = false;
+            service.items = _.remove(service.items, function(item) {
+                return item.checked;
+            });
+        }
+        function calculatePackagePrice(item) {
+            var price = 0;
+            if(!item.AirportServices) return price;
+
+            angular.forEach(item.AirportServices, function (service) {
+                price += service.Price;
+            });
+            return price;
+        }
+
+        function getTotalPrice() {
+            var totalPrice = 0;
+            angular.forEach(service.items, function (item) {
+                totalPrice += calculatePackagePrice(item);
+            });
+
+            return totalPrice;
         }
 
         return service;
