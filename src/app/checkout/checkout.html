@@ -10,12 +10,12 @@
         <div class="row mt-20">
             <div class="col-md-8">
                 <div>
-                    <p class="mt-50" ng-if="vm.packages.length <= 0 && !vm.loading">
+                    <p class="mt-50" ng-if="vm.packages.length <= 0">
                         No item in cart.
                     </p>
 
                     <ul ng-if="vm.packages.length" class="list-group">
-                        <li href="#" class="list-group-item" ng-repeat="package in vm.packages">
+                        <li href="#" class="list-group-item" ng-repeat="package in vm.packages track by $index">
                             <div class="row">
                                 <div class="col-md-9">
                                     <h3 class="list-group-item-heading">{{package.Name }}</h3>
@@ -46,13 +46,10 @@
                                 <div class="col-md-3">
                                     <div class="text-center">
                                         <button type="button"
-                                                class="btn"
-                                                ng-class="{'btn-success': package.checked , 'btn-primary': !package.checked}"
-                                                ng-model="package.checked"
-                                                ng-click="vm.removePackage(package)"
-                                                uib-btn-checkbox btn-checkbox-true="true"
-                                                btn-checkbox-false="false">
-                                            <span ng-if="package.checked">Remove</span>
+                                                class="btn btn-primary"
+                                                ng-click="vm.removePackage($index)">
+                                            <i class="fa fa-trash"></i>
+                                            <span>Remove</span>
                                         </button>
                                     </div>
                                 </div>
@@ -72,10 +69,10 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <a ui-sref="booking" class="btn btn-primary btn-lg btn-block">Continue Booking </a>
+                        <a ui-sref="booking" class="btn  text-uppercase btn-primary btn-lg btn-block">Continue Booking </a>
 
                         <button ng-disabled="!vm.totalPrice"
-                                class="mt-30  btn btn-primary btn-lg btn-block">Confirm Check Out
+                                class="mt-30 text-uppercase  btn btn-primary btn-lg btn-block">Confirm Check Out
                         </button>
                         <hr>
 

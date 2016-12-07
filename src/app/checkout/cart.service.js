@@ -19,12 +19,10 @@
             service.items.push(item)
         }
 
-        function remove(item) {
-            item.checked = false;
-            service.items = _.remove(service.items, function(item) {
-                return item.checked;
-            });
+        function remove($index) {
+            service.items.splice($index, 1);
         }
+
         function calculatePackagePrice(item) {
             var price = 0;
             if(!item.AirportServices) return price;

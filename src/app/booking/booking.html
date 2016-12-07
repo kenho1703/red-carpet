@@ -56,7 +56,7 @@
                                         <span ng-hide="vm.loading">Search</span>
                                         <span ng-show="vm.loading">Searching</span>
                                     </button>
-                                    <button type="submit"
+                                    <button type="button"
                                             ng-disabled="!vm.searchData.airport"
                                             class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.getPackages()">
                                         <span ng-hide="vm.loading">Search</span>
@@ -83,7 +83,7 @@
                         <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
                             <div class="row">
                                 <div class="col-md-9 col-sm-10 col-xs-8">
-                                    <h3 class="list-group-item-heading">{{package.Name }}</h3>
+                                    <h4 class="list-group-item-heading">{{package.Name }}</h4>
                                     <p class="list-group-item-text">{{package.Description }}</p>
                                 </div>
 
@@ -92,14 +92,9 @@
                                         <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0
                                             }}</h3>
                                         <button type="button"
-                                                class="btn btn-book"
-                                                ng-class="{'btn-success': package.checked , 'btn-primary': !package.checked}"
-                                                ng-model="package.checked"
-                                                ng-click="vm.togglePackageSelection(package)"
-                                                uib-btn-checkbox btn-checkbox-true="true"
-                                                btn-checkbox-false="false">
-                                            <span ng-show="package.checked">Booked</span>
-                                            <span ng-show="!package.checked">Book</span>
+                                                class="btn btn-book btn-primary"
+                                                ng-click="vm.addToCart(package)" >
+                                            <span>Book</span>
                                         </button>
                                     </div>
                                 </div>
@@ -122,7 +117,7 @@
                     <div class="panel-body">
                         <a ui-sref="checkout"
                             ng-disabled="!vm.totalPrice"
-                            class="btn btn-primary btn-lg btn-block">Check out
+                            class="btn btn-primary btn-lg btn-block btn-checkout">Check out
                         </a>
                         <hr>
 

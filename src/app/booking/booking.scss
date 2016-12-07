@@ -2,7 +2,7 @@
     background-image: url("/assets/images/banner-2.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 50%;
+    background-position: 0 -135px;
     height: 250px;
     text-align: center;
     .banner-title {
@@ -54,9 +54,11 @@
     background-color: #b00d07;
     color: #fff;
     border-radius: 4px;
+    font-weight: bold;
 }
 .btn-primary:hover,
 .btn-primary:focus,
+.btn-primary:active,
 .btn-primary[disabled]:hover{
     border-color: #B00D07;
     background-color: #B00D07;
@@ -76,6 +78,9 @@
         border-color: #3c3f40;
         h3{
             margin-top: 10px;
+        }
+        .total-price{
+            font-weight: 700;
         }
         .small{
             font-size: 16px;
@@ -105,6 +110,10 @@
     .btn{
         transition: all 0.3s;
     }
+    .list-group-item-heading{
+        font-weight: 700;
+        color: #36393b;
+    }
 }
 .item-price{
     margin-top: 0;
@@ -126,5 +135,16 @@
                 color: #fff;
             }
         }
+    }
+}
+
+.booking{
+    .btn-checkout{
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .chosen-container-single .chosen-default {
+        color: #333333;
+        font-size: 14px;
     }
 }

@@ -22,7 +22,7 @@
         vm.getPackages = getPackages;
         vm.minusNumberOfTravellers = minusNumberOfTravellers;
         vm.plusNumberOfTravellers = plusNumberOfTravellers;
-        vm.togglePackageSelection = togglePackageSelection;
+        vm.addToCart = addToCart;
         vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
 
         activate();
@@ -61,7 +61,6 @@
                 vm.loading = false;
                 var newData = respone.data.replace('{"d":null}', '');
                 vm.packageLists = angular.fromJson(newData);
-                checkPackageExistsInCart();
             }, function () {
                 vm.loading = false;
                 vm.packageLists = [];
@@ -98,13 +97,9 @@
             })
         }
 
-        function togglePackageSelection(item) {
+        function addToCart(item) {
 
-            if(item.checked){
-                CartService.add(item);
-            }else{
-                CartService.remove(item);
-            }
+            CartService.add(item);
 
             vm.totalPrice =  CartService.getTotalPrice();
             vm.totalItemInCart =  CartService.items.length;
