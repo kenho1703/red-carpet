@@ -6,7 +6,7 @@
         .factory('CartService', CartService);
 
     /** @ngInject */
-    function CartService() {
+    function CartService(_) {
 
         var service = {
             items : [],

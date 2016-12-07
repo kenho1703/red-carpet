@@ -6,7 +6,7 @@
         .controller('BookingController', BookingController);
 
     /** @ngInject */
-    function BookingController($filter, AirportService, AccountService, CartService) {
+    function BookingController($filter, _, AirportService, AccountService, CartService) {
 
         var vm = this;
 
