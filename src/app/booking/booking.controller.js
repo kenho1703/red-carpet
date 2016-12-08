@@ -112,6 +112,7 @@
 
         function goBack() {
             vm.bookingStep.currentStep--;
+            vm.paid = false;
         }
 
         function goPayment() {
