@@ -6,7 +6,7 @@
         .controller('BookingController', BookingController);
 
     /** @ngInject */
-    function BookingController($scope, $filter, _, AirportService, AccountService, CartService, $uibModal) {
+    function BookingController($scope, $filter, _, AirportService, AccountService, CartService, TravellersService, $uibModal) {
 
         var vm = this;
 
@@ -16,6 +16,7 @@
             numberOfTravellers: 1,
             airport: null
         };
+        vm.travellers = TravellersService.travellers;
         vm.totalPrice =  CartService.getTotalPrice() || 0;
         vm.totalItemInCart =  CartService.items.length || 0;
         vm.bookingStep = {
@@ -84,7 +85,6 @@
 
         function plusNumberOfTravellers() {
 
-            if (vm.searchData.numberOfTravellers >= 20) return;
             vm.searchData.numberOfTravellers++;
 
         }
@@ -116,18 +116,10 @@
         }
 
         function goTripDetailStep() {
-            goNextStep();
-        }
-
-        function goChooseService() {
-            goPreStep();
-        }
-
-        function goNextStep() {
             vm.bookingStep.currentStep++;
         }
 
-        function goPreStep() {
+        function goChooseService() {
             vm.bookingStep.currentStep--;
         }
 

@@ -102,9 +102,10 @@
                 <div red-affix offset-top="90">
                     <div class="panel booking-info hidden-xs" >
                         <div class="panel-body">
-                            <h3>Your Booking Info</h3>
+                            <h3>Your booking list</h3>
                             <hr class="bold">
-                            <div class="row">
+
+                            <div class="row" ng-if="vm.totalItemInCart">
                                 <div class="col-xs-12">
                                     <div class="pull-left ">
                                         <strong>Quantity</strong>
@@ -119,6 +120,9 @@
                                         <strong>{{vm.totalPrice | currency:"$":2}}</strong>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="text-center" ng-if="!vm.totalItemInCart">
+                               <strong> No bookings</strong>
                             </div>
 
                             <button ng-if="vm.bookingStep.currentStep === 0" ng-click="vm.goTripDetailStep()"

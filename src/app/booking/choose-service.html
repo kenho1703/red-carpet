@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="form-group">
                 <div class="form-label">Airport</div>
 
@@ -15,40 +15,21 @@
                         ng-disabled="!vm.airportLists.length"
                         class="form-control"
                         ng-model="vm.searchData.airport"
+                        on-change="vm.getPackages"
                         placeholder="Please Select"
                         ng-options="airport as airport.Name for airport in vm.airportLists">
                 </select>
 
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group">
                 <div class="form-label">Number Of Travellers</div>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default btn-number"
-                                ng-click="vm.minusNumberOfTravellers()"> &nbsp;
-                            <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
-                        </button>
-                    </span>
-                    <input type="number" name="number" class="form-control input-number"
-                           ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20"
-                           required>
-                    <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number"
-                                        ng-click="vm.plusNumberOfTravellers()"> &nbsp;
-                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;
-                                </button>
-                            </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 text-right">
-            <div class="form-group">
-                <div class="form-label hidden-xs">&nbsp;</div>
-                <button ng-click="vm.getPackages()" class="btn btn-lg btn-block btn-search btn-warning">
-                    <i class="fa fa-search"></i>
-                </button>
+                <select class="form-control" name="travellers" id="travellers"
+                        data-placeholder="Please select"
+                        ng-change="vm.getPackages()"
+                        ng-options="traveller.value as traveller.label for traveller in vm.travellers"
+                        ng-model="vm.searchData.numberOfTravellers"></select>
             </div>
         </div>
     </div>

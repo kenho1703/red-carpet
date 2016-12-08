@@ -8,12 +8,10 @@
 .row_dark_bg p{
     color:#ffffff;
     padding-bottom:8px;
-    font-family: Tahoma;
 }
 .row_dark_bg li{
     list-style:none;
     padding-bottom: 5px;
-    font-family: Tahoma;
 }
 .row_dark_bg li a{
     color:#ffffff;
@@ -21,9 +19,10 @@
 }
 
 .footer{
+    font-family: 'Source Sans Pro',sans-serif;
     margin-top: 105px;
     .text {
-        font-family: AvenirNext;
+
         font-size: 18px;
         font-weight: normal;
         line-height: 1.44;
@@ -47,7 +46,6 @@
     .footer-menu {
         text-align: center;
         margin-top: 30px;
-        font-family: AvenirNext;
         ul {
             padding-left: 0;
 

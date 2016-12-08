@@ -8,8 +8,6 @@
     /** @ngInject */
     function HomeController() {
 
-        var vm = this;
-
     }
 
 })();
