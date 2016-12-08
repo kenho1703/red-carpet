@@ -16,7 +16,7 @@
                 <i class="fa fa-2x fa-shopping-cart"></i>
                 <span class="badge">{{totalItemInCart()}}</span>
             </a>
-            <a class="navbar-brand" href="#">AirportRedCarpet</a>
+            <a class="navbar-brand" ui-sref="home">AirportRedCarpet</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -25,8 +25,8 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a></li>
-                <li><a href="https://airportredcarpet.com/about/">About</a></li>
+                <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                <li ui-sref-active="active"><a href="https://airportredcarpet.com/about/">About</a></li>
                 <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
                     <a href="#" class="dropdown-toggle" uib-dropdown-toggle>Service <span class="caret"></span></a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
@@ -37,7 +37,7 @@
                         <li><a href="#">Lounge</a></li>
                     </ul>
                 </li>
-                <li><a href="https://airportredcarpet.com/bookings/">Bookings</a></li>
+                <li ui-sref-active="active"><a ui-sref="bookings">Bookings</a></li>
                 <li><a href="https://airportredcarpet.com/faqs/">FAQ's</a></li>
                 <li><a href="https://airportredcarpet.com/contact-us/">Contact Us</a></li>
                 <li><a href="https://airportredcarpet.com/signin/">Log In/Register</a></li>

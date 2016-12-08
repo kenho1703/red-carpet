@@ -1,6 +1,6 @@
 <div>
     <div class="title">
-        <span>Confirm service </span>
+        <span>Please enter trip detail for each package </span>
         <div class="btn-light-right visible-xs" ng-click="vm.viewTip()">
             <i class="fa fa-lightbulb-o"></i>
         </div>
@@ -9,7 +9,7 @@
     <ul class="list-group">
         <li href="#" class="list-group-item" ng-repeat="package in vm.packages track by $index">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <h4 class="list-group-item-heading">{{package.Name }}</h4>
 
                     <div class="table-responsive">
@@ -35,14 +35,17 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="text-right">
                         <button type="button"
-                                class="btn btn-warning"
+                                class="btn btn-default"
                                 ng-click="vm.removePackage($index)">
-                            <i class="fa fa-trash"></i>
                             <span>Remove</span>
                         </button>
+                        <a href="#" type="button"
+                                class="btn btn-warning">
+                            <span>Trip details</span>
+                        </a>
                     </div>
                 </div>
 

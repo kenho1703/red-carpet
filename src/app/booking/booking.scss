@@ -122,14 +122,14 @@
     left: 0;
     right: 0;
     .checkout-wrapper{
-        background: #383a3f;
+        background-color: #f1f3f3;
         padding-top: 8px;
         padding-bottom: 8px;
         h3{
-            color: #fff;
+            color: #36393b;
             margin-top: 5px;
             span{
-                color: #fff;
+                color: #36393b;
             }
         }
     }
@@ -143,6 +143,10 @@
     .chosen-container-single .chosen-default {
         color: #333333;
         font-size: 14px;
+    }
+    .chosen-container-single .chosen-single{
+        background-color: #ffffff;
+        background: #ffffff;
     }
     .title{
         font-size: 24px;
@@ -224,6 +228,9 @@
             top: 9px;
             right: 0;
         }
+    }
+    .table-responsive{
+        border: none;
     }
 }
 

@@ -6,12 +6,11 @@
         .directive('redFooter', redFooter);
 
     function redFooter() {
-        var directive = {
+
+        return {
             templateUrl: 'app/common/directives/footer/footer.html',
             restrict: 'EA'
         };
-        return directive;
-
 
     }
 

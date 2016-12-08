@@ -1,0 +1,26 @@
+.btt {
+    bottom: 30px;
+    right: 30px;
+    position: fixed;
+    z-index: 999;
+    text-align: center;
+    @media only screen and (max-width: 400px) {
+        bottom: 90px;
+    }
+    button {
+        background-color: #ef3039;
+        color: #ffffff;
+        height: 50px;
+        width: 50px;
+        display: inline-block;
+        border-radius: 50%;
+        line-height: 50px;
+        border: 0;
+        outline: none;
+        opacity: 0.6;
+        &:hover {
+            background-color: #FF002C;
+            opacity: 1;
+        }
+    }
+}

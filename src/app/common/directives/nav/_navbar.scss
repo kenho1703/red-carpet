@@ -12,7 +12,7 @@
     -moz-border-radius:0;
     border-radius:0;
     .active > a, .open > a {
-        color: $color_suva_cabin_approx;
+        color: #ef3039;
         border-bottom: 4px solid;
         border-color: #ef3039 !important;
         font-weight: 200;
@@ -139,6 +139,11 @@
                     color: #ef3039;
                     background-color: transparent;
                     border-bottom: 4px solid #ef3039;
+                }
+            }
+            &.active{
+                > a {
+                    color: #ef3039;
                 }
             }
         }

@@ -9,8 +9,8 @@
     function routerConfig($stateProvider) {
 
         $stateProvider
-            .state('booking', {
-                url: '/booking',
+            .state('bookings', {
+                url: '/bookings',
                 templateUrl: 'app/booking/booking.html',
                 controller: 'BookingController',
                 controllerAs: 'vm'

@@ -7,7 +7,7 @@
 
     function redNav(CartService) {
 
-        var directive = {
+        return {
             templateUrl: 'app/common/directives/nav/nav.html',
             restrict: 'EA',
             link: link
@@ -20,8 +20,6 @@
                 return CartService.items.length;
             }
         }
-
-        return directive;
 
 
     }

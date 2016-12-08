@@ -62,6 +62,7 @@
 
         function getPackages() {
 
+            if(!vm.searchData.numberOfTravellers || !vm.searchData.airport) return;
             vm.loading = true;
             vm.packageLists = [];
             AirportService.getPackages(vm.searchData).then(function (respone) {
@@ -78,6 +79,7 @@
 
             if (vm.searchData.numberOfTravellers <= 1) return;
             vm.searchData.numberOfTravellers--;
+            getPackages();
 
         }
 
@@ -85,6 +87,7 @@
 
             if (vm.searchData.numberOfTravellers >= 20) return;
             vm.searchData.numberOfTravellers++;
+            getPackages();
 
         }
 

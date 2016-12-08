@@ -99,47 +99,50 @@
             </div>
             <div class="col-md-3">
                 <!--booking info-->
-                <div class="panel booking-info hidden-xs">
-                    <div class="panel-body">
-                        <h3>Your Booking Info</h3>
-                        <hr class="bold">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="pull-left ">
-                                    <strong>Quantity</strong>
+                <div red-affix offset-top="90">
+                    <div class="panel booking-info hidden-xs" >
+                        <div class="panel-body">
+                            <h3>Your Booking Info</h3>
+                            <hr class="bold">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="pull-left ">
+                                        <strong>Quantity</strong>
+                                    </div>
+                                    <div class="pull-right">{{vm.totalItemInCart}} item{{vm.totalItemInCart > 1 ? 's': '' }}</div>
                                 </div>
-                                <div class="pull-right">{{vm.totalItemInCart}} item{{vm.totalItemInCart > 1 ? 's': '' }}</div>
+                                <div class="col-xs-12 mt-10 total-price">
+                                    <div class="pull-left">
+                                        <strong>Total</strong>
+                                    </div>
+                                    <div class="pull-right">
+                                        <strong>{{vm.totalPrice | currency:"$":2}}</strong>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xs-12 mt-10 total-price">
-                                <div class="pull-left">
-                                    <strong>Total</strong>
-                                </div>
-                                <div class="pull-right">
-                                    <strong>{{vm.totalPrice | currency:"$":0}}</strong>
-                                </div>
+
+                            <button ng-if="vm.bookingStep.currentStep === 0" ng-click="vm.goTripDetailStep()"
+                                    ng-disabled="!vm.totalPrice"
+                                    class="btn btn-primary btn-lg btn-block btn-checkout mt-20">
+                                Next
+                            </button>
+                            <button ng-if="vm.bookingStep.currentStep === 1" ng-click="vm.goChooseService()"
+                                    class="btn btn-block btn-lg btn-default text-uppercase mt-20">
+                                Back
+                            </button>
+                            <button ng-if="vm.bookingStep.currentStep === 1" ng-disabled="!vm.totalPrice"
+                                    class="btn btn-primary btn-lg btn-block btn-checkout  mt-20">
+                                Check out
+                            </button>
+
+                            <div class="mt-30">
+                                <p>We can accept payment via </p>
+                                <img class="img-responsive" src="/assets/images/methods-of-payment.png">
                             </div>
-                        </div>
-
-                        <button ng-if="vm.bookingStep.currentStep === 0" ng-click="vm.goTripDetailStep()"
-                           ng-disabled="!vm.totalPrice"
-                           class="btn btn-primary btn-lg btn-block btn-checkout mt-20">
-                            Book now
-                        </button>
-                        <button ng-if="vm.bookingStep.currentStep === 1" ng-click="vm.goChooseService()"
-                                class="btn btn-block btn-lg btn-default text-uppercase mt-20">
-                            Continue Booking
-                        </button>
-                        <button ng-if="vm.bookingStep.currentStep === 1" ng-disabled="!vm.totalPrice"
-                                class="btn btn-primary btn-lg btn-block btn-checkout  mt-20">
-                            Check out
-                        </button>
-
-                        <div class="mt-30">
-                            <p>We can accept payment via </p>
-                            <img class="img-responsive" src="/assets/images/methods-of-payment.png">
                         </div>
                     </div>
                 </div>
+
                 <!--end booking info-->
             </div>
         </div>
@@ -149,25 +152,42 @@
        <div class="container">
            <div class="row">
                <div class="col-xs-12 checkout-wrapper">
-                   <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":0}}
+                   <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":2}}
                        <span class="pull-right small">{{vm.totalItemInCart}} items</span>
                    </h3>
                    <button type="button" ng-if="vm.bookingStep.currentStep === 0"
                            class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.goTripDetailStep()">
-                       <span>Book now</span>
+                       <span>Next</span>
                    </button>
 
                    <div class="btn-group btn-group-justified" ng-if="vm.bookingStep.currentStep === 1" >
                        <div class="btn-group" role="group">
                            <button ng-click="vm.goChooseService()"
                                    type="button" class="btn btn-lg btn-primary btn-continue-booking">
-                               Continue booking
+                               Back
                            </button>
                        </div>
                        <div ng-show="vm.totalPrice" class="btn-group" role="group">
                            <button type="button" class="btn btn-lg btn-primary">Check out</button>
                        </div>
                    </div>
+
+               </div>
+           </div>
+       </div>
+    </div>
+
+    <div class="animated fadeInUp fix-bottom-wrapper visible-xs" ng-show="!vm.totalPrice && vm.bookingStep.currentStep === 1">
+       <div class="container">
+           <div class="row">
+               <div class="col-xs-12 checkout-wrapper">
+                   <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":2}}
+                       <span class="pull-right small">{{vm.totalItemInCart}} items</span>
+                   </h3>
+                   <button ng-click="vm.goChooseService()"
+                           type="button" class="btn btn-lg btn-primary btn-block">
+                       Back
+                   </button>
 
                </div>
            </div>

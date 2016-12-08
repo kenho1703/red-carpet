@@ -17,8 +17,10 @@
                             <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
                         </button>
                     </span>
-                    <input type="number" name="number" class="form-control input-number"
+                    <input type="number" name="number" class="form-control input-number" test-d
+                           ng-model-options="{ debounce: 1000, getterSetter: true}"
                            ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20"
+                           ng-change="vm.getPackages()"
                            required>
                     <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number"
@@ -34,6 +36,7 @@
                 <div class="form-label">Airport</div>
 
                 <select chosen options="vm.airportLists"
+                        ng-disabled="!vm.airportLists.length"
                         on-change="vm.getPackages"
                         class="form-control"
                         ng-model="vm.searchData.airport"
@@ -75,12 +78,12 @@
                 <div class="col-md-3 col-sm-2 col-xs-4">
                     <div class="text-right">
                         <h3 class="item-price">
-                            {{vm.calculatePackageTotalPrice(package) | currency:"$":0}}
+                            {{vm.calculatePackageTotalPrice(package) | currency:"$":2}}
                         </h3>
                         <button type="button"
                                 class="btn btn-book btn-success"
                                 ng-click="vm.addToCart(package)">
-                            <span>Book</span>
+                            <span>Add</span>
                         </button>
                     </div>
                 </div>
