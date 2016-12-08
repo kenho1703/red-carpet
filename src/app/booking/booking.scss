@@ -51,6 +51,7 @@
     background-color: #2eca9f;
 }
 
+
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
@@ -59,6 +60,7 @@
     background-color: #2eca9f;
     color: #fff;
 }
+
 
 .btn-book{
     width: 78px;
@@ -147,6 +149,7 @@
     .chosen-container-single .chosen-single{
         background-color: #ffffff;
         background: #ffffff;
+        box-shadow: none;
     }
     .title{
         font-size: 24px;
@@ -171,6 +174,20 @@
             .fa {
                 font-size: 20px
             }
+        }
+    }
+    .btn-search{
+        height: 48px;
+    }
+    .btn-warning{
+        border-color: #ffc15b;
+        background-color: #ffc15b;
+        border-radius: 3px;
+        outline: none;
+        &:hover,
+        &:focus,
+        &:active{
+            outline: none;
         }
     }
     .booking-info{
@@ -210,6 +227,19 @@
             }
         }
 
+    }
+
+    .search{
+        .col-md-4{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .col-md-5{
+            padding-right: 5px;
+        }
+        .col-md-3{
+            padding-left: 5px;
+        }
     }
 
     .no-result{

@@ -6,7 +6,7 @@
         .controller('BookingController', BookingController);
 
     /** @ngInject */
-    function BookingController($filter, _, AirportService, AccountService, CartService, $uibModal) {
+    function BookingController($scope, $filter, _, AirportService, AccountService, CartService, $uibModal) {
 
         var vm = this;
 
@@ -79,7 +79,6 @@
 
             if (vm.searchData.numberOfTravellers <= 1) return;
             vm.searchData.numberOfTravellers--;
-            getPackages();
 
         }
 
@@ -87,7 +86,6 @@
 
             if (vm.searchData.numberOfTravellers >= 20) return;
             vm.searchData.numberOfTravellers++;
-            getPackages();
 
         }
 
