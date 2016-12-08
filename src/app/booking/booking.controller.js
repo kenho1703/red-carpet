@@ -28,8 +28,10 @@
         vm.removePackage = removePackage;
         vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
         vm.goTripDetailStep = goTripDetailStep;
-        vm.goChooseService = goChooseService;
+        vm.goBack = goBack;
+        vm.goPayment = goPayment;
         vm.viewTip = viewTip;
+        vm.viewTripDetails = viewTripDetails;
 
         activate();
 
@@ -107,8 +109,12 @@
             vm.bookingStep.currentStep++;
         }
 
-        function goChooseService() {
+        function goBack() {
             vm.bookingStep.currentStep--;
+        }
+
+        function goPayment() {
+            vm.bookingStep.currentStep++;
         }
 
         function viewTip() {
@@ -122,6 +128,21 @@
                     };
                 }
             });
+        }
+
+        function viewTripDetails(trip) {
+
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/booking/trip-details/trip-details.html',
+                controller: 'TripDetailsController',
+                controllerAs: 'vm',
+                size: 'md',
+                resolve: {
+                    trip: trip
+                }
+            });
+
+
         }
     }
 

@@ -1,6 +1,9 @@
 
 .form-control{
     height: 48px;
+    border-radius: 3px;
+    box-shadow: none;
+    -webkit-transition: none;
 }
 .input-group-btn > .btn {
     padding-top: 13px;
@@ -13,23 +16,58 @@
     &:hover{
         outline: none;
     }
+    &:active,
+    &.active {
+        outline: 0;
+        background-image: none;
+        box-shadow: none;
+    }
 }
-.chosen-container-single .chosen-single{
-    height: 48px;
-    line-height: 48px;
-    border-radius: 4px;
+.btn-switch .btn{
+    border-radius: 3px;
+    &:hover{
+        border-color: #2eca9f;
+        background-color: #2eca9f;
+    }
+    &.active{
+        border-color: #2eca9f;
+        background-color: #2eca9f;
+        color: #fff;
+        &:hover{
+            border-color: #2eca9f;
+            background-color: #2eca9f;
+        }
+    }
 }
-.chosen-container-single .chosen-single div b {
-    background-position: 0px 14px;;
+.chosen-container-single {
+    .chosen-single{
+        height: 48px;
+        line-height: 48px;
+        border-radius: 4px;
+        div b {
+            background-position: 0px 14px;;
+        }
+    }
 }
+
 .chosen-container-active.chosen-with-drop .chosen-single div b {
     background-position: -16px 14px;
+}
+.travellers{
+    .chosen-container-single {
+        .chosen-search{
+            border-top: 1px solid #aaa;
+            input{
+                display: none;
+            }
+        }
+    }
 }
 .btn-primary {
     border-color: #ef3039;
     background-color: #ef3039;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 3px;
     font-weight: bold;
 }
 .btn-primary:hover,
@@ -49,6 +87,7 @@
 .btn-success{
     border-color: #2eca9f;
     background-color: #2eca9f;
+    border-radius: 3px;
 }
 
 
@@ -245,7 +284,7 @@
 
     .no-result{
         font-size: 17px;
-        color: #36393b;
+        color: #ef3039;
         font-weight: 700;
     }
     .btn-continue-booking{

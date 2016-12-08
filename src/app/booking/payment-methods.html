@@ -1,1 +1,59 @@
-payment methods
+<div class="row" ng-init="newCustomer = true">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="title">
+            <span>Please enter your payment information</span>
+            <div class="btn-light-right visible-xs" ng-click="vm.viewTip()">
+                <i class="fa fa-lightbulb-o"></i>
+            </div>
+        </div>
+        <form>
+            <div class="form-group mb-30">
+                <div class="btn-group btn-group-justified btn-switch">
+                    <label class="btn btn-default btn-lg" ng-model="newCustomer" uib-btn-radio="true">
+                        I’m a new customer
+                    </label>
+                    <label class="btn btn-default btn-lg" ng-model="newCustomer" uib-btn-radio="false">
+                        I’ve booked here before
+                    </label>
+                </div>
+            </div>
+
+            <div ng-if="newCustomer">
+                <div class="form-group">
+                    <div class="form-label">Email address</div>
+                    <input type="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Payment Type</div>
+                    <select class="form-control">
+                        <option value="1">PayPal / Credit Card</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Charge Me In</div>
+                    <select class="form-control">
+                        <option value="USD">US Dollar [USD / $]</option>
+                        <option value="GBP">GB Pound [GBP / £]</option>
+                        <option value="EUR">Euro [EUR / €]</option>
+                    </select>
+                </div>
+            </div>
+
+            <div ng-if="!newCustomer">
+                <div class="form-group">
+                    <div class="form-label">Email address</div>
+                    <input type="email" class="form-control"  placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Password</div>
+                    <input type="password" class="form-control"  placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-lg btn-block btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
