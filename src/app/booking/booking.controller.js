@@ -101,7 +101,7 @@
             vm.totalPrice = CartService.getTotalPrice();
             vm.totalItemInCart = CartService.items.length;
             if(!vm.totalItemInCart){
-                goChooseService();
+                vm.bookingStep.currentStep = 0;
             }
         }
 

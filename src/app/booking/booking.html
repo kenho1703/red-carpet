@@ -20,7 +20,7 @@
                         </div>
                         <div class="pdt-10">
                             <span class="tip-title ">3. </span>
-                            <span>Select the service you require by clicking the "Add To Bookings" button</span>
+                            <span>Select the service you require by clicking the "Add" button</span>
                         </div>
                         <div class="pdt-10">
                             <span class="tip-title">4. </span>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="pdt-10">
                             <span class="tip-title">5. </span>
-                            <span>Once you're done click the "Continue Booking" link below to input your trip details and pay</span>
+                            <span>Once you're done continue to input your trip details and pay</span>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                    <div class="btn-group btn-group-justified" ng-if="vm.bookingStep.currentStep === 1 || vm.bookingStep.currentStep === 2">
                        <div class="btn-group" role="group">
                            <button ng-click="vm.goBack()"
-                                   type="button" class="btn btn-lg btn-primary btn-continue-booking">
+                                   type="button" class="btn btn-lg btn-default">
                                Back
                            </button>
                        </div>
@@ -190,22 +190,22 @@
        </div>
     </div>
 
-    <div class="animated fadeInUp fix-bottom-wrapper visible-xs" ng-show="!vm.totalPrice && vm.bookingStep.currentStep === 1">
-       <div class="container">
-           <div class="row">
-               <div class="col-xs-12 checkout-wrapper">
-                   <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":2}}
-                       <span class="pull-right small">{{vm.totalItemInCart}} items</span>
-                   </h3>
-                   <button ng-click="vm.goChooseService()"
-                           type="button" class="btn btn-lg btn-primary btn-block">
-                       Back
-                   </button>
+    <!--<div class="animated fadeInUp fix-bottom-wrapper visible-xs" ng-show="!vm.totalPrice && vm.bookingStep.currentStep === 1">-->
+       <!--<div class="container">-->
+           <!--<div class="row">-->
+               <!--<div class="col-xs-12 checkout-wrapper">-->
+                   <!--<h3 class="total-price">Total: {{vm.totalPrice | currency:"$":2}}-->
+                       <!--<span class="pull-right small">{{vm.totalItemInCart}} items</span>-->
+                   <!--</h3>-->
+                   <!--<button ng-click="vm.goChooseService()"-->
+                           <!--type="button" class="btn btn-lg btn-default btn-block">-->
+                       <!--Back-->
+                   <!--</button>-->
 
-               </div>
-           </div>
-       </div>
-    </div>
+               <!--</div>-->
+           <!--</div>-->
+       <!--</div>-->
+    <!--</div>-->
 
 </div>
 
