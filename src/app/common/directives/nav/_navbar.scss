@@ -12,19 +12,19 @@
     -moz-border-radius:0;
     border-radius:0;
     .active > a, .open > a {
-        color: #b00d07;
+        color: $color_suva_cabin_approx;
         border-bottom: 4px solid;
-        border-color: #b00d07 !important;
+        border-color: #ef3039 !important;
         font-weight: 200;
         font-size: 17px;
     }
     .navbar-brand {
-        color: #b00d07;
+        color: #ef3039;
         text-align: center;
         font-weight: 700;
         padding-top: 20px;
         &:hover{
-            color: #b00d07;
+            color: #ef3039;
         }
     }
     .dropdown-menu li a {
@@ -47,13 +47,13 @@
             a {
                 /*color: $white !important;*/
                 &:hover {
-                    color: #b00d07;;
+                    color: #ef3039;
                     background: $white;
                 }
             }
         }
         .dropdown-menu li a {
-            color: #b00d07 !important;
+            color: $color_suva_cabin_approx !important;
             padding: 5px 0 5px 10px;
             &:hover {
                 color: $white;
@@ -98,13 +98,14 @@
         margin-top: 8px;
         margin-bottom: 8px;
         margin-right: 10px;
-        color: #b00d07;
+        color: $color_suva_cabin_approx;
         position: relative;
         .badge{
             position: absolute;
             top: 3px;
             right: 0px;
             padding: 3px 6px;
+            background-color: #ef3039;
         }
     }
 }
@@ -131,19 +132,19 @@
                 transition: all 0.3s ease-in-out 0s;
             }
             > a {
-                color: #b00d07;
+                color: $color_suva_cabin_approx;
                 border-bottom: 4px solid transparent;
                 font-size: 17px;
                 &:hover {
-                    color: #b00d07;
+                    color: #ef3039;
                     background-color: transparent;
-                    border-bottom: 4px solid #b00d07;
+                    border-bottom: 4px solid #ef3039;
                 }
             }
         }
         .register {
             span {
-                color: #b00d07;
+                color: $color_suva_cabin_approx;
                 padding: 0 10px;
                 border: solid 1px #ffb4a7;
                 border-radius: 2px;

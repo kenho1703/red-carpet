@@ -26,6 +26,7 @@
 
 body{
     font-family: 'Source Sans Pro',sans-serif;
+    color: #666666;
 }
 .main-content{
     margin-top: 75px;
@@ -42,7 +43,10 @@ hr {
     margin-top: 15px;
     margin-bottom: 15px;
     border: 0;
-    border-top: 1px solid #dce0e0;
+    border-top: 1px solid #dddddd;
+    &.bold{
+        border-top-width: 2px;
+    }
 }
 .loading-block{
     span{

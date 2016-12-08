@@ -9,10 +9,10 @@
     function routerConfig($stateProvider) {
 
         $stateProvider
-            .state('booking', {
-                url: '/booking',
-                templateUrl: 'app/booking/booking.html',
-                controller: 'BookingController',
+            .state('home', {
+                url: '/',
+                templateUrl: 'app/home/home.html',
+                controller: 'HomeController',
                 controllerAs: 'vm'
             });
 

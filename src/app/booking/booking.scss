@@ -1,28 +1,4 @@
-.banner {
-    background-image: url("/assets/images/banner-2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 -135px;
-    height: 250px;
-    text-align: center;
-    .banner-title {
-        font-size: 36px;
-        font-weight: 700;
-        text-align: center;
-        color: #fff;
-        letter-spacing: 1px;
-        padding-top: 70px;
-        margin-top: 0;
-    }
-    .banner-sub-title {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.44;
-        text-align: center;
-        color: #fff;
-        padding-top: 10px;
-    }
-}
+
 .form-control{
     height: 48px;
 }
@@ -50,38 +26,56 @@
     background-position: -16px 14px;
 }
 .btn-primary {
-    border-color: #b00d07;
-    background-color: #b00d07;
+    border-color: #ef3039;
+    background-color: #ef3039;
     color: #fff;
     border-radius: 4px;
     font-weight: bold;
 }
 .btn-primary:hover,
 .btn-primary:focus,
-.btn-primary:active,
-.btn-primary[disabled]:hover{
-    border-color: #B00D07;
-    background-color: #B00D07;
+.btn-primary:active{
+    background-color: #FF002C;
+    border-color: #FF002C;
     color: #fff;
 }
+
+.btn-primary[disabled]:hover{
+    border-color: #ef3039;
+    background-color: #ef3039;
+    color: #fff;
+}
+
+.btn-success{
+    border-color: #2eca9f;
+    background-color: #2eca9f;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success[disabled]:hover{
+    border-color: #2eca9f;
+    background-color: #2eca9f;
+    color: #fff;
+}
+
 .btn-book{
     width: 78px;
 }
-.panel{
+.booking-info{
     border: 0;
     border-radius: 0;
+    margin-top: -6px;
     .panel-heading{
-        background-color: #3c3f40;
-        padding-left: 25px;
-        padding-right: 25px;
+        background-color: #f1f3f3;
         color: #fff;
-        border-color: #3c3f40;
+        border-color: #f1f3f3;
         h3{
-            margin-top: 10px;
+            margin-top: 4px;
+            margin-bottom: 0;
         }
-        .total-price{
-            font-weight: 700;
-        }
+
         .small{
             font-size: 16px;
             color: #fff;
@@ -90,10 +84,13 @@
     }
     .panel-body {
         padding: 15px;
-        padding-left: 25px;
-        padding-right: 25px;
-        border: 1px solid #ddd;
+        padding-top: 10px;
+        border: 1px solid #f1f3f3;
         border-top: 0;
+        background-color: #f1f3f3;
+    }
+    .total-price{
+        color: #36393b;
     }
 }
 .list-group-item {
@@ -146,5 +143,117 @@
     .chosen-container-single .chosen-default {
         color: #333333;
         font-size: 14px;
+    }
+    .title{
+        font-size: 24px;
+        text-align: center;
+        color: #36393b;
+        font-weight: 500;
+        margin-bottom: 22px;
+        position: relative;
+
+        .btn-light-right {
+            height: 30px;
+            width: 30px;
+            background: #ffc15b;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            right: -5px;
+            color: #ffffff;
+            cursor: pointer;
+            line-height: 28px;
+            outline: none;
+            .fa {
+                font-size: 20px
+            }
+        }
+    }
+    .booking-info{
+        h3{
+            margin-top: 0;
+        }
+    }
+    .info-tool-tip {
+        border-radius: 4px;
+        background: #ffffff;
+        margin: auto;
+        border: 2px solid #ddd;
+        margin-left: -70px;
+        margin-top: 45px;
+        .content {
+            padding: 20px 15px;
+            position: relative;
+        }
+        .tip-title{
+            font-size: 18px;
+            font-weight: bold;
+            color: #36393b;
+        }
+        .btn-light-right {
+            height: 40px;
+            width: 40px;
+            background: #ffc15b;
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            padding-top: 1px;
+            padding-left: 12px;
+            color: #ffffff;
+            font-size: 28px;
+            .fa {
+                font-size: 28px
+            }
+        }
+
+    }
+
+    .no-result{
+        font-size: 17px;
+        color: #36393b;
+    }
+    .btn-continue-booking{
+        position: relative;
+        &:after{
+            content: '';
+            border: 0;
+            height: 26px;
+            background: #fff;
+            width: 2px;
+            position: absolute;
+            top: 9px;
+            right: 0;
+        }
+    }
+}
+
+.modal-content{
+    .info-tool-tip {
+        border-radius: 4px;
+        background: #ffffff;
+        margin: auto;
+        .content {
+            padding: 20px 15px;
+            position: relative;
+        }
+        .tip-title{
+            font-size: 18px;
+            font-weight: bold;
+            color: #36393b;
+        }
+    }
+    .btn-light-right {
+        height: 30px;
+        width: 30px;
+        background: #ffc15b;
+        border-radius: 50%;
+        position: absolute;
+        padding-top: 1px;
+        color: #ffffff;
+        text-align: center;
+        font-size: 20px;
+        .fa {
+            font-size: 20px
+        }
     }
 }

@@ -1,148 +1,174 @@
 <div class="booking">
-
-    <div class="banner">
-        <h1 class="banner-title">Airport Queues A Thing Of The Past </h1>
-        <p class="banner-sub-title">No Stress, No Worries, No Waiting</p>
-    </div>
-
     <div class="container">
 
-        <div class="row mt-20">
-            <div class="col-md-8">
-                <div>
-                    <form name="vm.bookingForm" novalidate>
+        <div class="row mt-30">
+            <div class="col-md-2">
+
+                <!--tip-->
+                <div class="info-tool-tip tool-step hidden-xs hidden-sm">
+                    <div class="content">
+                        <div class="btn-light-right">
+                            <i class="fa fa-lightbulb-o"></i>
+                        </div>
+                        <div class="pdt-10">
+                            <span class="tip-title">1. </span>
+                            <span>Select the number of travellers travelling</span>
+                        </div>
+                        <div class=" pdt-10">
+                            <span class="tip-title">2. </span>
+                            <span>Select the airport</span>
+                        </div>
+                        <div class="pdt-10">
+                            <span class="tip-title ">3. </span>
+                            <span>Select the service you require by clicking the "Add To Bookings" button</span>
+                        </div>
+                        <div class="pdt-10">
+                            <span class="tip-title">4. </span>
+                            <span>Repeat steps 1, 2 and 3 for both the departure and arrival airports for the complete 360 experience</span>
+                        </div>
+                        <div class="pdt-10">
+                            <span class="tip-title">5. </span>
+                            <span>Once you're done click the "Continue Booking" link below to input your trip details and pay</span>
+                        </div>
+                    </div>
+                </div>
+                <!--end tip-->
+
+            </div>
+            <div class="col-md-7">
+
+                <!--step wizard-->
+                <div class="step-wizard">
+                    <div class="bs-wizard">
+                        <div class="col-md-4 bs-wizard-step complete"
+                             ng-class="{'col-xs-8': vm.bookingStep.currentStep === 0, 'col-xs-2': vm.bookingStep.currentStep !== 0, 'text-complete' : vm.bookingStep.currentStep > 0}">
+                            <div class="bs-wizard-stepnum">
+                                <div class="numberCircle"
+                                     ng-bind-html="currentStep > 0 ? '<i class=\'fa fa-check\'></i>' : 1"></div>
+                                <span class="hidden-xs hidden-sm">Choose Service</span>
+                                <span class="hidden-md hidden-lg" ng-show="vm.bookingStep.currentStep === 0">Choose Service</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 bs-wizard-step"
+                             ng-class="{complete: vm.bookingStep.currentStep > 0, 'col-xs-8': vm.bookingStep.currentStep === 1, 'col-xs-2': vm.bookingStep.currentStep !== 1,'text-complete' : vm.bookingStep.currentStep > 1}">
+                            <div class="bs-wizard-stepnum">
+                                <div class="numberCircle"
+                                     ng-bind-html="currentStep > 1 ? '<i class=\'fa fa-check\'></i>' : 2"></div>
+                                <span class="hidden-xs hidden-sm">Trip Details</span>
+                                <span class="hidden-md hidden-lg" ng-show="vm.bookingStep.currentStep === 1">Trip Details</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 bs-wizard-step"
+                             ng-class="{complete: vm.bookingStep.currentStep > 1, 'col-xs-8': vm.bookingStep.currentStep === 2, 'col-xs-2': vm.bookingStep.currentStep !== 2,'text-complete' : vm.bookingStep.currentStep > 2}">
+                            <div class="bs-wizard-stepnum">
+                                <div class="numberCircle">3</div>
+                                <span class="hidden-xs hidden-sm">Payment</span>
+                                <span class="hidden-md hidden-lg" ng-show="vm.bookingStep.currentStep === 2">Payment</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end step wizard-->
+
+                <div class="animate-switch-container" ng-switch on="vm.bookingStep.currentStep">
+                    <div class="animate-switch" ng-switch-when="0">
+                        <div ng-include="'app/booking/choose-service.html'"> </div>
+                    </div>
+                    <div class="animate-switch" ng-switch-when="1">
+                        <div ng-include="'app/booking/trip-details.html'"> </div>
+                    </div>
+                    <div class="animate-switch" ng-switch-when="2">
+                        <div ng-include="'app/booking/payment-methods.html'"> </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-3">
+                <!--booking info-->
+                <div class="panel booking-info hidden-xs">
+                    <div class="panel-body">
+                        <h3>Your Booking Info</h3>
+                        <hr class="bold">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="form-label">Number Of Travellers</div>
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default btn-number"
-                                                    ng-click="vm.minusNumberOfTravellers()"> &nbsp;
-                                                <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
-                                            </button>
-                                        </span>
-                                        <input type="text" name="number" class="form-control input-number"
-                                               ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20"
-                                               required>
-                                        <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number"
-                                        ng-click="vm.plusNumberOfTravellers()"> &nbsp;
-                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;
-                                </button>
-                            </span>
-                                    </div>
+                            <div class="col-xs-12">
+                                <div class="pull-left ">
+                                    <strong>Quantity</strong>
                                 </div>
+                                <div class="pull-right">{{vm.totalItemInCart}} item{{vm.totalItemInCart > 1 ? 's': '' }}</div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <div class="form-label">Airport</div>
-
-                                    <select chosen options="vm.airportLists"
-                                            class="form-control"
-                                            ng-model="vm.searchData.airport"
-                                            placeholder="Please Select"
-                                            ng-options="airport as airport.Name for airport in vm.airportLists">
-                                    </select>
-
+                            <div class="col-xs-12 mt-10 total-price">
+                                <div class="pull-left">
+                                    <strong>Total</strong>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-label hidden-sm hidden-xs">&nbsp;</div>
-                                <div class="text-center">
-                                    <button type="submit"
-                                            ng-disabled="!vm.searchData.airport"
-                                            class="btn btn-lg btn-primary hidden-xs" ng-click="vm.getPackages()">
-                                        <span ng-hide="vm.loading">Search</span>
-                                        <span ng-show="vm.loading">Searching</span>
-                                    </button>
-                                    <button type="button"
-                                            ng-disabled="!vm.searchData.airport"
-                                            class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.getPackages()">
-                                        <span ng-hide="vm.loading">Search</span>
-                                        <span ng-show="vm.loading">Searching</span>
-                                    </button>
+                                <div class="pull-right">
+                                    <strong>{{vm.totalPrice | currency:"$":0}}</strong>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
 
-                <div>
-                    <p class="mt-50" ng-if="vm.packageLists.length <= 0 && !vm.loading">
-                        Please contact AirportRedCarpet.com directly for a quote
-                    </p>
+                        <button ng-if="vm.bookingStep.currentStep === 0" ng-click="vm.goTripDetailStep()"
+                           ng-disabled="!vm.totalPrice"
+                           class="btn btn-primary btn-lg btn-block btn-checkout mt-20">
+                            Book now
+                        </button>
+                        <button ng-if="vm.bookingStep.currentStep === 1" ng-click="vm.goChooseService()"
+                                class="btn btn-block btn-lg btn-default text-uppercase mt-20">
+                            Continue Booking
+                        </button>
+                        <button ng-if="vm.bookingStep.currentStep === 1" ng-disabled="!vm.totalPrice"
+                                class="btn btn-primary btn-lg btn-block btn-checkout  mt-20">
+                            Check out
+                        </button>
 
-                    <div class="loading-block mt-40 text-center" ng-if="vm.loading">
-                        <span><img src="assets/images/loading.GIF" alt=""></span>
-                        <span> &nbsp; &nbsp; Loading...</span>
+                        <div class="mt-30">
+                            <p>We can accept payment via </p>
+                            <img class="img-responsive" src="/assets/images/methods-of-payment.png">
+                        </div>
                     </div>
-
-
-                    <ul ng-if="vm.packageLists.length" class="list-group">
-                        <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-10 col-xs-8">
-                                    <h4 class="list-group-item-heading">{{package.Name }}</h4>
-                                    <p class="list-group-item-text">{{package.Description }}</p>
-                                </div>
-
-                                <div class="col-md-3 col-sm-2 col-xs-4">
-                                    <div class="text-center">
-                                        <h3 class="item-price">{{vm.calculatePackageTotalPrice(package) | currency:"$":0
-                                            }}</h3>
-                                        <button type="button"
-                                                class="btn btn-book btn-primary"
-                                                ng-click="vm.addToCart(package)" >
-                                            <span>Book</span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </li>
-                    </ul>
                 </div>
-
-
+                <!--end booking info-->
             </div>
-            <div class="col-md-4 hidden-xs">
-
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
-                            <span class="pull-right small">{{vm.totalItemInCart}} items</span>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a ui-sref="checkout"
-                            ng-disabled="!vm.totalPrice"
-                            class="btn btn-primary btn-lg btn-block btn-checkout">Check out
-                        </a>
-                        <hr>
-
-                        <p>We can accept payment via </p>
-                        <img class="img-responsive" src="/assets/images/methods-of-payment.png">
-                    </div>
-                </div>
-            </div>
-
-
         </div>
-
     </div>
 
-    <div class="fix-bottom-wrapper visible-xs" ng-show="vm.totalPrice">
+    <div class="animated fadeInUp fix-bottom-wrapper visible-xs" ng-show="vm.totalPrice">
        <div class="container">
            <div class="row">
                <div class="col-xs-12 checkout-wrapper">
-                   <h3 class="total-price">{{vm.totalPrice | currency:"$":0}}
+                   <h3 class="total-price">Total: {{vm.totalPrice | currency:"$":0}}
                        <span class="pull-right small">{{vm.totalItemInCart}} items</span>
                    </h3>
-                   <a ui-sref="checkout" type="button"
-                      class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.getPackages()">
-                       <span>Checkout</span>
-                   </a>
+                   <button type="button" ng-if="vm.bookingStep.currentStep === 0"
+                           class="btn btn-lg btn-block btn-primary visible-xs " ng-click="vm.goTripDetailStep()">
+                       <span>Book now</span>
+                   </button>
+
+                   <div class="btn-group btn-group-justified" ng-if="vm.bookingStep.currentStep === 1" >
+                       <div class="btn-group" role="group">
+                           <button ng-click="vm.goChooseService()"
+                                   type="button" class="btn btn-lg btn-primary btn-continue-booking">
+                               Continue booking
+                           </button>
+                       </div>
+                       <div ng-show="vm.totalPrice" class="btn-group" role="group">
+                           <button type="button" class="btn btn-lg btn-primary">Check out</button>
+                       </div>
+                   </div>
+
                </div>
            </div>
        </div>

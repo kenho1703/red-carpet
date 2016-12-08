@@ -1,0 +1,52 @@
+<div>
+    <div class="title">
+        <span>Confirm service </span>
+        <div class="btn-light-right visible-xs" ng-click="vm.viewTip()">
+            <i class="fa fa-lightbulb-o"></i>
+        </div>
+    </div>
+
+    <ul class="list-group">
+        <li href="#" class="list-group-item" ng-repeat="package in vm.packages track by $index">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4 class="list-group-item-heading">{{package.Name }}</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Service Type</th>
+                                <th>Airport</th>
+                                <th>Service</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="service in package.AirportServices">
+                                <td>{{service.ServiceType.Name}}</td>
+                                <td>{{service.Airport.Name}}</td>
+                                <td>{{service.Service.Name}}</td>
+                                <td>{{service.Price}}</td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="text-right">
+                        <button type="button"
+                                class="btn btn-warning"
+                                ng-click="vm.removePackage($index)">
+                            <i class="fa fa-trash"></i>
+                            <span>Remove</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+    </ul>
+</div>

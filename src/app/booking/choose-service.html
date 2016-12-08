@@ -1,0 +1,94 @@
+<!--search form-->
+<form class="search" novalidate>
+    <div class="title">
+        <span>Please Choose Services</span>
+        <div class="btn-light-right visible-xs" ng-click="vm.viewTip()">
+            <i class="fa fa-lightbulb-o"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="form-label">Number Of Travellers</div>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number"
+                                ng-click="vm.minusNumberOfTravellers()"> &nbsp;
+                            <i class="fa fa-minus" aria-hidden="true"></i> &nbsp;
+                        </button>
+                    </span>
+                    <input type="number" name="number" class="form-control input-number"
+                           ng-model="vm.searchData.numberOfTravellers" ng-min="1" ng-max="20"
+                           required>
+                    <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number"
+                                        ng-click="vm.plusNumberOfTravellers()"> &nbsp;
+                                    <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;
+                                </button>
+                            </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="form-group">
+                <div class="form-label">Airport</div>
+
+                <select chosen options="vm.airportLists"
+                        on-change="vm.getPackages"
+                        class="form-control"
+                        ng-model="vm.searchData.airport"
+                        placeholder="Please Select"
+                        ng-options="airport as airport.Name for airport in vm.airportLists">
+                </select>
+
+            </div>
+        </div>
+    </div>
+</form>
+<!--end search form-->
+
+<!--result-->
+<div class="search-result">
+
+    <!--loading-->
+    <div class="loading-block mt-40 text-center" ng-if="vm.loading">
+        <span><img src="assets/images/loading.GIF" alt=""></span>
+        <span> &nbsp; &nbsp; Loading...</span>
+    </div>
+    <!--end loading-->
+
+    <!--no result-->
+    <p class="mt-50 no-result" ng-if="vm.packageLists.length <= 0 && !vm.loading">
+        Please contact AirportRedCarpet.com directly for a quote
+    </p>
+    <!--end no result-->
+
+    <!--list result-->
+    <ul ng-if="vm.packageLists.length" class="list-group">
+        <li href="#" class="list-group-item" ng-repeat="package in vm.packageLists">
+            <div class="row">
+                <div class="col-md-9 col-sm-10 col-xs-8">
+                    <h4 class="list-group-item-heading">{{package.Name }}</h4>
+                    <p class="list-group-item-text">{{package.Description }}</p>
+                </div>
+
+                <div class="col-md-3 col-sm-2 col-xs-4">
+                    <div class="text-right">
+                        <h3 class="item-price">
+                            {{vm.calculatePackageTotalPrice(package) | currency:"$":0}}
+                        </h3>
+                        <button type="button"
+                                class="btn btn-book btn-success"
+                                ng-click="vm.addToCart(package)">
+                            <span>Book</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+    </ul>
+    <!--end list result-->
+
+</div>
+<!--end result-->

@@ -6,7 +6,7 @@
         .controller('BookingController', BookingController);
 
     /** @ngInject */
-    function BookingController($filter, _, AirportService, AccountService, CartService) {
+    function BookingController($filter, _, AirportService, AccountService, CartService, $uibModal) {
 
         var vm = this;
 
@@ -18,12 +18,19 @@
         };
         vm.totalPrice =  CartService.getTotalPrice() || 0;
         vm.totalItemInCart =  CartService.items.length || 0;
+        vm.bookingStep = {
+            currentStep: 0
+        };
 
         vm.getPackages = getPackages;
         vm.minusNumberOfTravellers = minusNumberOfTravellers;
         vm.plusNumberOfTravellers = plusNumberOfTravellers;
         vm.addToCart = addToCart;
+        vm.removePackage = removePackage;
         vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
+        vm.goTripDetailStep = goTripDetailStep;
+        vm.goChooseService = goChooseService;
+        vm.viewTip = viewTip;
 
         activate();
 
@@ -103,7 +110,44 @@
 
             vm.totalPrice =  CartService.getTotalPrice();
             vm.totalItemInCart =  CartService.items.length;
+            vm.packages = CartService.items;
 
+        }
+
+        function removePackage(item) {
+            CartService.remove(item);
+            vm.packages = CartService.items;
+            vm.totalPrice = CartService.getTotalPrice();
+            vm.totalItemInCart = CartService.items.length;
+        }
+
+        function goTripDetailStep() {
+            goNextStep();
+        }
+
+        function goChooseService() {
+            goPreStep();
+        }
+
+        function goNextStep() {
+            vm.bookingStep.currentStep++;
+        }
+
+        function goPreStep() {
+            vm.bookingStep.currentStep--;
+        }
+
+        function viewTip() {
+
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/booking/tip-modal.html',
+                size: 'md',
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.close = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                }
+            });
         }
     }
 
