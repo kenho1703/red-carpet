@@ -25,9 +25,11 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-label">Number Of Travellers</div>
-                <select class="form-control" name="travellers" id="travellers"
-                        data-placeholder="Please select"
-                        ng-change="vm.getPackages()"
+                <select chosen options="vm.travellers"
+                        class="form-control"
+                        name="travellers" id="travellers"
+                        placeholder="Please select"
+                        on-change="vm.getPackages"
                         ng-options="traveller.value as traveller.label for traveller in vm.travellers"
                         ng-model="vm.searchData.numberOfTravellers"></select>
             </div>

@@ -24,8 +24,6 @@
         };
 
         vm.getPackages = getPackages;
-        vm.minusNumberOfTravellers = minusNumberOfTravellers;
-        vm.plusNumberOfTravellers = plusNumberOfTravellers;
         vm.addToCart = addToCart;
         vm.removePackage = removePackage;
         vm.calculatePackageTotalPrice = calculatePackageTotalPrice;
@@ -63,7 +61,7 @@
 
         function getPackages() {
 
-            if(!vm.searchData.numberOfTravellers || !vm.searchData.airport) return;
+            if(!vm.searchData.airport) return;
             vm.loading = true;
             vm.packageLists = [];
             AirportService.getPackages(vm.searchData).then(function (respone) {
@@ -74,19 +72,6 @@
                 vm.loading = false;
                 vm.packageLists = [];
             })
-        }
-
-        function minusNumberOfTravellers() {
-
-            if (vm.searchData.numberOfTravellers <= 1) return;
-            vm.searchData.numberOfTravellers--;
-
-        }
-
-        function plusNumberOfTravellers() {
-
-            vm.searchData.numberOfTravellers++;
-
         }
 
         function calculatePackageTotalPrice(packages) {
@@ -113,6 +98,9 @@
             vm.packages = CartService.items;
             vm.totalPrice = CartService.getTotalPrice();
             vm.totalItemInCart = CartService.items.length;
+            if(!vm.totalItemInCart){
+                goChooseService();
+            }
         }
 
         function goTripDetailStep() {
