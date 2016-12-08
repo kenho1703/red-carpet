@@ -98,13 +98,6 @@
             return price;
         }
 
-        function checkPackageExistsInCart() {
-            var intersectItems = _.intersectionBy(vm.packageLists, CartService.items, 'Id');
-            intersectItems.forEach(function (item) {
-                item.checked = true;
-            })
-        }
-
         function addToCart(item) {
 
             CartService.add(item);
