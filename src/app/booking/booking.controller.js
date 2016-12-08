@@ -30,6 +30,7 @@
         vm.goTripDetailStep = goTripDetailStep;
         vm.goBack = goBack;
         vm.goPayment = goPayment;
+        vm.pay = pay;
         vm.viewTip = viewTip;
         vm.viewTripDetails = viewTripDetails;
 
@@ -115,6 +116,10 @@
 
         function goPayment() {
             vm.bookingStep.currentStep++;
+        }
+
+        function pay() {
+            vm.paid = true;
         }
 
         function viewTip() {

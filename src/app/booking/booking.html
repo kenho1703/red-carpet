@@ -141,11 +141,16 @@
                             </button>
                             <button ng-if="vm.bookingStep.currentStep === 2"
                                     ng-disabled="!vm.totalPrice"
+                                    ng-click="vm.pay()"
                                     class="btn btn-primary btn-lg btn-block btn-checkout  mt-20">
-                                Pay
+                                <span ng-if="!vm.paid">Pay</span>
+                                <span ng-if="vm.paid">Thanks you</span>
                             </button>
 
                             <div class="mt-30">
+
+                                <p ng-if="vm.paid">Hope I will pass the test</p>
+
                                 <p>We can accept payment via </p>
                                 <img class="img-responsive" src="/assets/images/methods-of-payment.png">
                             </div>
@@ -181,7 +186,10 @@
                            <button type="button" ng-click="vm.goPayment()" class="btn btn-lg btn-primary">Check out</button>
                        </div>
                        <div ng-show="vm.totalPrice" ng-if="vm.bookingStep.currentStep === 2" class="btn-group" role="group">
-                           <button type="button"  class="btn btn-lg btn-primary">Pay</button>
+                           <button type="button" ng-click="vm.pay()"  class="btn btn-lg btn-primary">
+                               <span ng-if="!vm.paid">Pay</span>
+                               <span ng-if="vm.paid">Thanks you</span>
+                           </button>
                        </div>
                    </div>
 
