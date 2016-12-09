@@ -17,8 +17,7 @@
 
             function checkPosition() {
                 var position  = angular.element(element).offset();
-                var scrollHeight 	= $document.prop( 'height' ),
-                    scrollTop 		= angular.element($window).prop("pageYOffset"),
+                var scrollTop 		= angular.element($window).prop("pageYOffset"),
                     positionTop 	= attrs.offsetTop ? attrs.offsetTop : element.prop('offsetTop'),
                     pinnedOffset    =  position.top - positionTop;
 

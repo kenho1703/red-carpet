@@ -125,20 +125,22 @@
 
         function viewTip() {
 
-            var modalInstance = $uibModal.open({
+            $uibModal.open({
                 templateUrl: 'app/booking/tip-modal.html',
                 size: 'md',
-                controller: function ($scope, $uibModalInstance) {
-                    $scope.close = function () {
+                controller: function ($uibModalInstance) {
+                    var vm = this;
+                    vm.close = function () {
                         $uibModalInstance.dismiss('cancel');
                     };
-                }
+                },
+                controllerAs: 'vm'
             });
         }
 
         function viewTripDetails(trip) {
 
-            var modalInstance = $uibModal.open({
+            $uibModal.open({
                 templateUrl: 'app/booking/trip-details/trip-details.html',
                 controller: 'TripDetailsController',
                 controllerAs: 'vm',
@@ -147,7 +149,6 @@
                     trip: trip
                 }
             });
-
 
         }
     }
